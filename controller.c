@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   controller.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/19 14:44:17 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/19 16:36:56 by alhote           ###   ########.fr       */
+/*   Created: 2016/04/19 16:22:17 by alhote            #+#    #+#             */
+/*   Updated: 2016/04/19 16:34:00 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
 #include "controller.h"
+#include "rt.h"
 
-int		main(void)
+int			keyboard(int keycode, void *data)
 {
-	t_world		*w;
+	t_world	*w;
 
-	w = init_world(500, 500);
-	mlx_key_hook(w->win, keyboard, w);
-	mlx_loop(w->mlx);
+	w = data;
+	if (keycode == ESC)
+		exit(0);
+	render(w);
 	return (0);
 }

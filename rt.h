@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/19 14:44:17 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/19 16:36:56 by alhote           ###   ########.fr       */
+/*   Created: 2016/04/19 15:14:06 by alhote            #+#    #+#             */
+/*   Updated: 2016/04/19 18:09:24 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
-#include "controller.h"
+#ifndef RT_H
+# define RT_H
+# include <mlx.h>
+# include <stdlib.h>
+# include <stdio.h>
 
-int		main(void)
+typedef struct	s_world
 {
-	t_world		*w;
-
-	w = init_world(500, 500);
-	mlx_key_hook(w->win, keyboard, w);
-	mlx_loop(w->mlx);
-	return (0);
-}
+	void	*mlx;
+	void	*win;
+	void	*img;
+	int		screen_x;
+	int		screen_y;
+}				t_world;
+t_world			*init_world(int x, int y);
+void			render(t_world *w);
+#endif
