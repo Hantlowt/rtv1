@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt.h                                               :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/19 15:14:06 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/20 18:14:01 by alhote           ###   ########.fr       */
+/*   Created: 2016/04/20 18:13:10 by alhote            #+#    #+#             */
+/*   Updated: 2016/04/20 18:13:47 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_H
-# define RT_H
-# include <mlx.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include "sphere.h"
+#include "rt.h"
 
-typedef struct	s_world
+void	img_pxl(void *img, int x, int y, int color)
 {
-	void		*mlx;
-	void		*win;
-	void		*img;
-	int			screen_x;
-	int			screen_y;
-	t_sphere	*spheres;
-}				t_world;
-t_world			*init_world(int x, int y);
-void			img_pxl(void *img, int x, int y, int color);
-void			render(t_world *w);
-#endif
+	char	*data;
+	int		bpp;
+	int		sizeline;
+	int		endian;
+
+	data = mlx_get_data_addr(img, &bpp, &sizeline, &endian);
+	data[y * sizeline + x * 4] = color;
+	data[y * sizeline + x * 4 + 1] = color >> 8;
+	data[y * sizeline + x * 4 + 2] = color >> 16;
+}

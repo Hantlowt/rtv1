@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt.h                                               :+:      :+:    :+:   */
+/*   maths.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/19 15:14:06 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/20 18:14:01 by alhote           ###   ########.fr       */
+/*   Created: 2016/04/20 18:21:03 by alhote            #+#    #+#             */
+/*   Updated: 2016/04/20 18:35:03 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_H
-# define RT_H
-# include <mlx.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include "sphere.h"
+#ifndef MATHS_H
+# define MATHS_H
+# include <math.h>
 
-typedef struct	s_world
+typedef struct	s_vector
 {
-	void		*mlx;
-	void		*win;
-	void		*img;
-	int			screen_x;
-	int			screen_y;
-	t_sphere	*spheres;
-}				t_world;
-t_world			*init_world(int x, int y);
-void			img_pxl(void *img, int x, int y, int color);
-void			render(t_world *w);
+	double			x;
+	double			y;
+	double			z;
+}				t_vector;
+t_vector		vect(double x, double y, double z);
+t_vector		rotate(t_vector v, char a);
+double			efmod(double a, double base);
+double			torad(double degree);
+double			cosd(double v);
+double			sind(double v);
 #endif

@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:01:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/19 19:48:55 by alhote           ###   ########.fr       */
+/*   Updated: 2016/04/20 15:35:56 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_world			*init_world(int x, int y)
 	new->mlx = mlx_init();
 	new->win = mlx_new_window(new->mlx, x, y, "RTv1");
 	new->img = mlx_new_image(new->mlx, x, y);
+	new->spheres = 0;
 	return (new);
 }
 

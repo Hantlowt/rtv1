@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt.h                                               :+:      :+:    :+:   */
+/*   sphere.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/19 15:14:06 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/20 18:14:01 by alhote           ###   ########.fr       */
+/*   Created: 2016/04/20 14:37:43 by alhote            #+#    #+#             */
+/*   Updated: 2016/04/20 18:32:21 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_H
-# define RT_H
-# include <mlx.h>
+#ifndef SPHERE_H
+# define SPHERE_H
 # include <stdlib.h>
-# include <stdio.h>
-# include "sphere.h"
+# include "maths.h"
 
-typedef struct	s_world
+typedef struct		s_sphere
 {
-	void		*mlx;
-	void		*win;
-	void		*img;
-	int			screen_x;
-	int			screen_y;
-	t_sphere	*spheres;
-}				t_world;
-t_world			*init_world(int x, int y);
-void			img_pxl(void *img, int x, int y, int color);
-void			render(t_world *w);
+	t_vector		pos;
+	double			rayon;
+	int				color;
+	struct s_sphere	*next;
+}					t_sphere;
+t_sphere			*init_sphere(t_vector pos, double rayon, int color);
+void				add_sphere(t_sphere *begin, t_sphere *new);
 #endif

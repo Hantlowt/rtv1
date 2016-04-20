@@ -6,7 +6,7 @@
 #    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/04/18 19:06:17 by alhote            #+#    #+#              #
-#    Updated: 2016/04/19 16:33:05 by alhote           ###   ########.fr        #
+#    Updated: 2016/04/20 15:59:09 by alhote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS  = -Wall -Wextra -Werror -Ofast
 INC_DIR = -Ilibft/includes \
 			-Idraw \
 
-SRCS = main.c world.c controller.c
+SRCS = main.c world.c controller.c sphere.c vector.c
 OBJECTS = $(SRCS:.c=.o)
 
 all: lib $(NAME)
