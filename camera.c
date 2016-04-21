@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt.h                                               :+:      :+:    :+:   */
+/*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/19 15:14:06 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/21 16:35:39 by alhote           ###   ########.fr       */
+/*   Created: 2016/04/21 16:25:42 by alhote            #+#    #+#             */
+/*   Updated: 2016/04/21 16:29:04 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_H
-# define RT_H
-# include <mlx.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include "sphere.h"
-# include "camera.h"
+#include "camera.h"
 
-typedef struct	s_world
+t_camera			*init_camera(t_vector pos, t_vector pan)
 {
-	void		*mlx;
-	void		*win;
-	void		*img;
-	int			screen_x;
-	int			screen_y;
-	t_camera	*cam;
-	t_sphere	*spheres;
-}				t_world;
-t_world			*init_world(int x, int y);
-void			img_pxl(void *img, int x, int y, int color);
-void			render(t_world *w);
-#endif
+	t_camera	*new;
+
+	if (!(new = (t_camera*)malloc(sizeof(t_camera))))
+		return (0);
+	new->pos = pos;
+	new->pan = pan;
+	return (new);
+}

@@ -6,11 +6,11 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 18:16:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/20 18:16:15 by alhote           ###   ########.fr       */
+/*   Updated: 2016/04/21 15:35:33 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
+#include "maths.h"
 
 double			efmod(double a, double base)
 {

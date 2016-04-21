@@ -6,17 +6,18 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 15:30:28 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/20 18:44:09 by alhote           ###   ########.fr       */
+/*   Updated: 2016/04/21 16:34:36 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sphere.h"
 
-t_sphere			*init_sphere(t_vector pos, double rayon, int color)
+t_sphere	*init_sphere(t_vector pos, double rayon, int color)
 {
 	t_sphere	*new;
 
-	new = (t_sphere*)malloc(sizeof(t_sphere));
+	if (!(new = (t_sphere*)malloc(sizeof(t_sphere))))
+		return (0);
 	new->pos = pos;
 	new->rayon = rayon;
 	new->color = color;
@@ -24,14 +25,14 @@ t_sphere			*init_sphere(t_vector pos, double rayon, int color)
 	return (new);
 }
 
-void				add_sphere(t_sphere *begin, t_sphere *new)
+void		add_sphere(t_sphere *begin, t_sphere *new)
 {
 	while (begin->next)
 		begin = begin->next;
 	begin->next = new;
 }
 
-t_vector			sphere_equation(t_vector d, t_vector p, t_sphere *s)
+int			s_equa(t_vector d, t_vector p, t_sphere *s, t_vector *r)
 {
 	double	a;
 	double	b;
@@ -47,11 +48,12 @@ t_vector			sphere_equation(t_vector d, t_vector p, t_sphere *s)
 	s->rayon * s->rayon;
 	delta = b * b - 4 * a * c;
 	if (delta < 0)
-		return (0);
+		return (1);
 	else if (delta == 0)
 		t = (-b + sqrt(delta)) / (2 * a);
 	else
 		t = ((-b + sqrt(delta)) / (2 * a) < (-b - sqrt(delta)) / (2 * a) ?
 		(-b + sqrt(delta)) / (2 * a) : (-b - sqrt(delta)) / (2 * a));
-	return (vect(p.x + d.x * t, p.y + d.y * t, p.z + d.z * t));
+	*r = vect(p.x + d.x * t, p.y + d.y * t, p.z + d.z * t);
+	return (0);
 }

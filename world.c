@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:01:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/20 15:35:56 by alhote           ###   ########.fr       */
+/*   Updated: 2016/04/21 17:16:04 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,36 @@ t_world			*init_world(int x, int y)
 {
 	t_world	*new;
 
-	new = (t_world*)malloc(sizeof(t_world));
+	if (!(new = (t_world*)malloc(sizeof(t_world))))
+		return (0);
 	new->screen_x = x;
 	new->screen_y = y;
 	new->mlx = mlx_init();
 	new->win = mlx_new_window(new->mlx, x, y, "RTv1");
 	new->img = mlx_new_image(new->mlx, x, y);
 	new->spheres = 0;
+	new->cam = 0;
 	return (new);
 }
 
 void			render(t_world *w)
 {
-	printf("%d %d\n", w->screen_x, w->screen_y);
+	int			x;
+	int			y;
+	t_vector	i;
+
+	x = 0;
+	y = 0;
+	while (y < w->screen_y)
+	{
+		while (x < w->screen_x)
+		{
+			if (!s_equa(w->cam->pan, vect(x, y, 0), w->spheres, &i))
+				img_pxl(w->img, x, y, 0xFFFFFF);
+			++x;
+		}
+		x = 0;
+		++y;
+	}
+	mlx_put_image_to_window(w->mlx, w->win, w->img, 0, 0);
 }

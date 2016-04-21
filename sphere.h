@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 14:37:43 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/20 18:32:21 by alhote           ###   ########.fr       */
+/*   Updated: 2016/04/21 14:42:25 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ typedef struct		s_sphere
 }					t_sphere;
 t_sphere			*init_sphere(t_vector pos, double rayon, int color);
 void				add_sphere(t_sphere *begin, t_sphere *new);
+int					s_equa(t_vector d, t_vector p, t_sphere *s, t_vector *r);
 #endif
