@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 15:49:23 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/21 15:34:12 by alhote           ###   ########.fr       */
+/*   Updated: 2016/04/25 19:58:03 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,26 @@ t_vector		rotate(t_vector v, double o, char a)
 	else
 		return (v);
 	return (n);
+}
+
+double			dist(t_vector A, t_vector B)
+{
+	return (sqrt(pow(A.x - B.x, 2) + pow(A.y - B.y, 2) + pow(A.z - B.z, 2)));
+}
+
+t_vector		cross_product(t_vector A, t_vector B)
+{
+	double	x;
+	double	y;
+	double	z;
+
+	x = A.y * B.z - A.z * B.y;
+	y = A.z * B.x - A.x * B.z;
+	z = A.x * B.y - A.y * B.x;
+	return (vect(x, y, z));
+}
+
+t_vector		transformation_vector(t_vector forward, t_vector B)
+{
+	return (cross_product(cross_product(forward, B), forward));
 }

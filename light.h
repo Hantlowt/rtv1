@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   maths.c                                            :+:      :+:    :+:   */
+/*   light.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/20 18:16:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/25 17:54:02 by hantlowt         ###   ########.fr       */
+/*   Created: 2016/04/25 12:42:39 by hantlowt          #+#    #+#             */
+/*   Updated: 2016/04/25 12:47:04 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "maths.h"
+#ifndef LIGHT_H
+# define LIGHT_H
+# include <stdlib.h>
+# include "maths.h"
 
-double			efmod(double a, double base)
+typedef struct		s_light
 {
-	return (a < 0.0 ? fmod(((fmod(a, base)) + base), base) : fmod(a, base));
-}
-
-double			torad(double degree)
-{
-	return (PI * degree / 180.0);
-}
-
-double			cosd(double v)
-{
-	return (cos(PI * v / 180.0));
-}
-
-double			sind(double v)
-{
-	return (sin(PI * v / 180.0));
-}
+	t_vector		pos;
+	double			power;
+	struct s_light	*next;
+}					t_light;
+t_light				*init_light(t_vector pos, double power);
+void				add_light(t_light *begin, t_light *new);
+#endif

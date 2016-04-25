@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:01:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/21 17:16:04 by alhote           ###   ########.fr       */
+/*   Updated: 2016/04/25 13:16:47 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void			render(t_world *w)
 		while (x < w->screen_x)
 		{
 			if (!s_equa(w->cam->pan, vect(x, y, 0), w->spheres, &i))
-				img_pxl(w->img, x, y, 0xFFFFFF);
+				img_pxl(w->img, x, y, 0xFFFFFF - (dist(i, w->lights->pos)) / 2);
 			++x;
 		}
 		x = 0;

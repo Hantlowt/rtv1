@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maths.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 18:21:03 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/21 15:37:11 by alhote           ###   ########.fr       */
+/*   Updated: 2016/04/25 18:40:51 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,7 @@ double			efmod(double a, double base);
 double			torad(double degree);
 double			cosd(double v);
 double			sind(double v);
+double			dist(t_vector A, t_vector B);
+t_vector		cross_product(t_vector A, t_vector B);
+t_vector		transformation_vector(t_vector forward, t_vector B);
 #endif

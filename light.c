@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   maths.c                                            :+:      :+:    :+:   */
+/*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/20 18:16:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/25 17:54:02 by hantlowt         ###   ########.fr       */
+/*   Created: 2016/04/25 12:47:43 by hantlowt          #+#    #+#             */
+/*   Updated: 2016/04/25 12:49:17 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "maths.h"
+#include "light.h"
 
-double			efmod(double a, double base)
+t_light	*init_light(t_vector pos, double power)
 {
-	return (a < 0.0 ? fmod(((fmod(a, base)) + base), base) : fmod(a, base));
+	t_light	*new;
+
+	if (!(new = (t_light*)malloc(sizeof(t_light))))
+		return (0);
+	new->pos = pos;
+	new->power = power;
+	new->next = 0;
+	return (new);
 }
 
-double			torad(double degree)
+void		add_light(t_light *begin, t_light *new)
 {
-	return (PI * degree / 180.0);
-}
-
-double			cosd(double v)
-{
-	return (cos(PI * v / 180.0));
-}
-
-double			sind(double v)
-{
-	return (sin(PI * v / 180.0));
+	while (begin->next)
+		begin = begin->next;
+	begin->next = new;
 }
