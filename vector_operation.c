@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_operation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 10:11:13 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/26 10:51:37 by alhote           ###   ########.fr       */
+/*   Updated: 2016/04/26 23:04:42 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_vector		norm_vect(t_vector v)
 {
 	double	size;
 
-	size = sqrt(pow(v.x, 2) + pow(v.y, 2) + pow(v.z, 2));
+	size = sqrtf(powf(v.x, 2) + powf(v.y, 2) + powf(v.z, 2));
 	v.x /= size;
 	v.y /= size;
 	v.z /= size;

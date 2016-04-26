@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maths.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 18:21:03 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/26 10:55:05 by alhote           ###   ########.fr       */
+/*   Updated: 2016/04/26 23:14:48 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,5 @@ double			dist(t_vector a, t_vector b);
 t_vector		norm_vect(t_vector v);
 t_vector		cross_product(t_vector a, t_vector b);
 t_vector		transformation_vector(t_vector forward, t_vector ref);
+double			get_cosangle(t_vector a, t_vector b, t_vector c);
 #endif

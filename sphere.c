@@ -6,7 +6,7 @@
 /*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 15:30:28 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/25 13:09:54 by hantlowt         ###   ########.fr       */
+/*   Updated: 2016/04/26 23:06:04 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ int			s_equa(t_vector d, t_vector p, t_sphere *s, t_vector *r)
 	if (delta < 0)
 		return (1);
 	else if (delta == 0)
-		t = (-b + sqrt(delta)) / (2 * a);
+		t = (-b + sqrtf(delta)) / (2 * a);
 	else
-		t = ((-b + sqrt(delta)) / (2 * a) < (-b - sqrt(delta)) / (2 * a) ?
-		(-b + sqrt(delta)) / (2 * a) : (-b - sqrt(delta)) / (2 * a));
+		t = ((-b + sqrtf(delta)) / (2 * a) < (-b - sqrtf(delta)) / (2 * a) ?
+		(-b + sqrtf(delta)) / (2 * a) : (-b - sqrtf(delta)) / (2 * a));
 	*r = vect(p.x + d.x * t, p.y + d.y * t, p.z + d.z * t);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:01:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/26 17:17:18 by alhote           ###   ########.fr       */
+/*   Updated: 2016/04/26 23:09:54 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void			render(t_world *w)
 	py = w->cam->pany + 22.5;
 	px = w->cam->panx + 22.5;
 	r = pan_to_vect(px, py);
-	printf("%f %f %f\n", r.x, r.y, r.z);
 	while (y < w->screen_y)
 	{
 		while (x < w->screen_x)

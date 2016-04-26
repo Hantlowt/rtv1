@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 15:49:23 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/26 10:54:45 by alhote           ###   ########.fr       */
+/*   Updated: 2016/04/26 23:04:49 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,17 @@ t_vector		vect(double x, double y, double z)
 
 double			dist(t_vector a, t_vector b)
 {
-	return (sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2) + pow(a.z - b.z, 2)));
+	return (sqrtf(powf(a.x - b.x, 2) + powf(a.y - b.y, 2) + powf(a.z - b.z, 2)));
+}
+
+double			get_cosangle(t_vector a, t_vector b, t_vector c)
+{
+	double	AB;
+	double	BC;
+	double	AC;
+
+	AB = dist(a, b);
+	BC = dist(b, c);
+	AC = dist(a, c);
+	return ((powf(BC, 2) + powf(AB, 2) - powf(AC, 2)) / (2 * BC * AB));
 }
