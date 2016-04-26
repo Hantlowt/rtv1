@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:01:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/25 13:16:47 by hantlowt         ###   ########.fr       */
+/*   Updated: 2016/04/26 17:17:18 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,34 @@ void			render(t_world *w)
 {
 	int			x;
 	int			y;
+	double		px;
+	double		py;
 	t_vector	i;
+	t_vector	r;
 
 	x = 0;
 	y = 0;
+	py = w->cam->pany + 22.5;
+	px = w->cam->panx + 22.5;
+	r = pan_to_vect(px, py);
+	printf("%f %f %f\n", r.x, r.y, r.z);
 	while (y < w->screen_y)
 	{
 		while (x < w->screen_x)
 		{
-			if (!s_equa(w->cam->pan, vect(x, y, 0), w->spheres, &i))
+			//printf("%f %f %f\n", r.x, r.y, r.z);
+			if (!s_equa(r, w->cam->pos, w->spheres, &i))
 				img_pxl(w->img, x, y, 0xFFFFFF - (dist(i, w->lights->pos)) / 2);
+			else
+				img_pxl(w->img, x, y, 0);
 			++x;
+			py = py - (45.0 / (double)w->screen_x);
+			r = pan_to_vect(px, py);
 		}
 		x = 0;
 		++y;
+		py = w->cam->pany - 22.5;
+		px = px - (45.0 / (double)w->screen_y);
 	}
 	mlx_put_image_to_window(w->mlx, w->win, w->img, 0, 0);
 }

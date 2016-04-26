@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/21 16:02:34 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/21 16:26:07 by alhote           ###   ########.fr       */
+/*   Updated: 2016/04/26 14:08:12 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 typedef struct		s_camera
 {
 	t_vector		pos;
-	t_vector		pan;
+	double			panx;
+	double			pany;
 }					t_camera;
-t_camera			*init_camera(t_vector pos, t_vector pan);
+t_camera			*init_camera(t_vector pos, double px, double py);
+t_vector			pan_to_vect(double px, double py);
 #endif
