@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:01:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/27 12:53:48 by hantlowt         ###   ########.fr       */
+/*   Updated: 2016/04/27 17:21:15 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,35 @@ t_world			*init_world(int x, int y)
 	return (new);
 }
 
+t_sphere		*checsp(t_vector r, t_world *w, t_vector *i, t_sphere *ignore)
+{
+	t_sphere	*s;
+	t_vector	k;
+	t_sphere	*out;
+	double		distance;
+	int			touched;
+
+	touched = 0;
+	s = w->spheres;
+	while (s)
+	{
+		if (!s_equa(r, w->cam->pos, s, &k) && s != ignore)
+		{
+			if (!touched || distance < dist(w->cam->pos, k))
+			{
+				*i = k;
+				distance = dist(w->cam->pos, k);
+				out = s;
+			}
+			touched = 1;
+		}
+		s = s->next;
+	}
+	if (touched)
+		return (out);
+	return (0);
+}
+
 void			render(t_world *w)
 {
 	int			x;
@@ -36,23 +65,19 @@ void			render(t_world *w)
 	double		py;
 	t_vector	i;
 	t_vector	r;
+	t_sphere	*s;
 
 	x = 0;
 	y = 0;
-	py = w->cam->pany + 22.5;
-	px = w->cam->panx + 22.5;
+	py = w->cam->pany + (45.0) / 2;
+	px = w->cam->panx + (w->screen_y * 45.0 / w->screen_x) / 2;
 	r = pan_to_vect(px, py);
-	//t_hsv color = hsv(231, 50, 80);
 	while (y < w->screen_y)
 	{
 		while (x < w->screen_x)
 		{
-			//printf("%f %f %f\n", r.x, r.y, r.z);
-			double v = 5 + fabs(200 * get_cosangle(w->cam->pos, i, w->lights->pos));
-			v = (v > 100 ? 100 : v);
-			//printf("%f\n", get_cosangle(w->cam->pos, i, w->lights->pos));
-			if (!s_equa(r, w->cam->pos, w->spheres, &i))
-				img_pxl(w->img, x, y, hsvtorgb(hsv(173, 100, (int)v)));//0x292626 * get_cosangle(w->cam->pos, i, w->lights->pos));
+			if ((s = checsp(r, w, &i, 0)))
+				img_pxl(w->img, x, y, draw_sphere(i, s, w));
 			else
 				img_pxl(w->img, x, y, 0);
 			++x;
@@ -61,8 +86,8 @@ void			render(t_world *w)
 		}
 		x = 0;
 		++y;
-		py = w->cam->pany - 22.5;
-		px = px - (45.0 / (double)w->screen_y);
+		py = w->cam->pany - (45.0) / 2;
+		px = px - ((w->screen_y * 45.0 / w->screen_x) / (double)w->screen_y);
 	}
 	mlx_put_image_to_window(w->mlx, w->win, w->img, 0, 0);
 }

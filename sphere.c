@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 15:30:28 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/26 23:06:04 by hantlowt         ###   ########.fr       */
+/*   Updated: 2016/04/27 17:10:34 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sphere.h"
 
-t_sphere	*init_sphere(t_vector pos, double rayon, int color)
+t_sphere	*init_sphere(t_vector pos, double rayon, t_hsv color)
 {
 	t_sphere	*new;
 
@@ -21,6 +21,7 @@ t_sphere	*init_sphere(t_vector pos, double rayon, int color)
 	new->pos = pos;
 	new->rayon = rayon;
 	new->color = color;
+	new->material = 1;
 	new->next = 0;
 	return (new);
 }

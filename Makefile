@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+         #
+#    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/04/18 19:06:17 by alhote            #+#    #+#              #
-#    Updated: 2016/04/27 10:08:42 by hantlowt         ###   ########.fr        #
+#    Updated: 2016/04/27 15:45:46 by alhote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INC_DIR = -Ilibft/includes \
 			-Idraw \
 
 SRCS = main.c world.c controller.c sphere.c vector.c maths.c draw.c camera.c\
-		light.c vector_operation.c hsv.c
+		light.c vector_operation.c hsv.c material.c
 OBJECTS = $(SRCS:.c=.o)
 
 all: lib $(NAME)
