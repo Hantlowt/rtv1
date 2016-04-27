@@ -6,7 +6,7 @@
 /*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 15:14:06 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/25 12:56:15 by hantlowt         ###   ########.fr       */
+/*   Updated: 2016/04/27 10:13:04 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "sphere.h"
 # include "camera.h"
 # include "light.h"
+# include "hsv.h"
 
 typedef struct	s_world
 {

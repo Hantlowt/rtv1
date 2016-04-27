@@ -6,7 +6,7 @@
 /*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:01:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/26 23:09:54 by hantlowt         ###   ########.fr       */
+/*   Updated: 2016/04/27 12:53:48 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,17 @@ void			render(t_world *w)
 	py = w->cam->pany + 22.5;
 	px = w->cam->panx + 22.5;
 	r = pan_to_vect(px, py);
+	//t_hsv color = hsv(231, 50, 80);
 	while (y < w->screen_y)
 	{
 		while (x < w->screen_x)
 		{
 			//printf("%f %f %f\n", r.x, r.y, r.z);
+			double v = 5 + fabs(200 * get_cosangle(w->cam->pos, i, w->lights->pos));
+			v = (v > 100 ? 100 : v);
+			//printf("%f\n", get_cosangle(w->cam->pos, i, w->lights->pos));
 			if (!s_equa(r, w->cam->pos, w->spheres, &i))
-				img_pxl(w->img, x, y, 0xFFFFFF - (dist(i, w->lights->pos)) / 2);
+				img_pxl(w->img, x, y, hsvtorgb(hsv(173, 100, (int)v)));//0x292626 * get_cosangle(w->cam->pos, i, w->lights->pos));
 			else
 				img_pxl(w->img, x, y, 0);
 			++x;

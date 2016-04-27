@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hsv.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/19 14:44:17 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/27 12:51:50 by hantlowt         ###   ########.fr       */
+/*   Created: 2016/04/27 09:32:52 by hantlowt          #+#    #+#             */
+/*   Updated: 2016/04/27 11:40:30 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
-#include "controller.h"
-#include "maths.h"
+#ifndef HSV_H
+# define HSV_H
+# include "maths.h"
+# include <stdio.h>
 
-int		main(void)
+typedef struct	s_hsv
 {
-	t_world		*w;
-
-	w = init_world(500, 500);
-	w->cam = init_camera(vect(0.0, 0.0, 0.0), 0.0, 90.0);
-	w->lights = init_light(vect(0.0, 0.0, 0.0), 10);
-	w->spheres = init_sphere(vect(5.0, 0.0, 5.0), 1.0, 0xFFFFFF);
-	mlx_key_hook(w->win, keyboard, w);
-	render(w);
-	mlx_loop(w->mlx);
-	return (0);
-}
+	int			hue;
+	int			saturation;
+	int			value;
+}				t_hsv;
+t_hsv			hsv(int h, int s, int v);
+int				hsvtorgb(t_hsv c);
+#endif
