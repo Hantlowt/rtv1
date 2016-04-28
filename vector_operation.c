@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_operation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 10:11:13 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/26 23:04:42 by hantlowt         ###   ########.fr       */
+/*   Updated: 2016/04/28 09:59:44 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,18 @@ t_vector		cross_product(t_vector a, t_vector b)
 	x = a.y * b.z - a.z * b.y;
 	y = a.z * b.x - a.x * b.z;
 	z = a.x * b.y - a.y * b.x;
+	return (vect(x, y, z));
+}
+
+t_vector		addition_vect(t_vector a, t_vector b)
+{
+	double	x;
+	double	y;
+	double	z;
+
+	x = a.x + b.x;
+	y = a.y + b.y;
+	z = a.z + b.z;
 	return (vect(x, y, z));
 }
 

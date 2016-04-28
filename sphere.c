@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 15:30:28 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/27 17:10:34 by alhote           ###   ########.fr       */
+/*   Updated: 2016/04/28 11:28:14 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		add_sphere(t_sphere *begin, t_sphere *new)
 	begin->next = new;
 }
 
-int			s_equa(t_vector d, t_vector p, t_sphere *s, t_vector *r)
+int			s_equa(t_ray r, t_sphere *s, t_vector *i)
 {
 	double	a;
 	double	b;
@@ -41,11 +41,11 @@ int			s_equa(t_vector d, t_vector p, t_sphere *s, t_vector *r)
 	double	delta;
 	double	t;
 
-	a = (d.x * d.x) + (d.y * d.y) + (d.z * d.z);
-	b = 2 * (d.x * (p.x - s->pos.x) + d.y * (p.y - s->pos.y)
-	+ d.z * (p.z - s->pos.z));
-	c = (((p.x - s->pos.x) * (p.x - s->pos.x)) + ((p.y - s->pos.y)
-	* (p.y - s->pos.y)) + ((p.z - s->pos.z) * (p.z - s->pos.z))) -
+	a = (r.pan.x * r.pan.x) + (r.pan.y * r.pan.y) + (r.pan.z * r.pan.z);
+	b = 2 * (r.pan.x * (r.pos.x - s->pos.x) + r.pan.y * (r.pos.y - s->pos.y)
+	+ r.pan.z * (r.pos.z - s->pos.z));
+	c = (((r.pos.x - s->pos.x) * (r.pos.x - s->pos.x)) + ((r.pos.y - s->pos.y)
+	* (r.pos.y - s->pos.y)) + ((r.pos.z - s->pos.z) * (r.pos.z - s->pos.z))) -
 	s->rayon * s->rayon;
 	delta = b * b - 4 * a * c;
 	if (delta < 0)
@@ -55,6 +55,6 @@ int			s_equa(t_vector d, t_vector p, t_sphere *s, t_vector *r)
 	else
 		t = ((-b + sqrtf(delta)) / (2 * a) < (-b - sqrtf(delta)) / (2 * a) ?
 		(-b + sqrtf(delta)) / (2 * a) : (-b - sqrtf(delta)) / (2 * a));
-	*r = vect(p.x + d.x * t, p.y + d.y * t, p.z + d.z * t);
+	*i = vect(r.pos.x + r.pan.x * t, r.pos.y + r.pan.y * t, r.pos.z + r.pan.z * t);
 	return (0);
 }

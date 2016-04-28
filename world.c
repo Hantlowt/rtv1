@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:01:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/27 17:21:15 by alhote           ###   ########.fr       */
+/*   Updated: 2016/04/28 13:19:43 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_world			*init_world(int x, int y)
 	return (new);
 }
 
-t_sphere		*checsp(t_vector r, t_world *w, t_vector *i, t_sphere *ignore)
+t_sphere		*checsp(t_ray r, t_world *w, t_vector *i, t_sphere *ignore)
 {
 	t_sphere	*s;
 	t_vector	k;
@@ -40,12 +40,12 @@ t_sphere		*checsp(t_vector r, t_world *w, t_vector *i, t_sphere *ignore)
 	s = w->spheres;
 	while (s)
 	{
-		if (!s_equa(r, w->cam->pos, s, &k) && s != ignore)
+		if (!s_equa(r, s, &k) && s != ignore)
 		{
-			if (!touched || distance < dist(w->cam->pos, k))
+			if (!touched || distance > dist(r.pos, k))
 			{
 				*i = k;
-				distance = dist(w->cam->pos, k);
+				distance = dist(r.pos, k);
 				out = s;
 			}
 			touched = 1;
@@ -64,14 +64,15 @@ void			render(t_world *w)
 	double		px;
 	double		py;
 	t_vector	i;
-	t_vector	r;
+	t_ray		r;
 	t_sphere	*s;
 
 	x = 0;
 	y = 0;
 	py = w->cam->pany + (45.0) / 2;
 	px = w->cam->panx + (w->screen_y * 45.0 / w->screen_x) / 2;
-	r = pan_to_vect(px, py);
+	r.pan = pan_to_vect(px, py);
+	r.pos = w->cam->pos;
 	while (y < w->screen_y)
 	{
 		while (x < w->screen_x)
@@ -79,10 +80,10 @@ void			render(t_world *w)
 			if ((s = checsp(r, w, &i, 0)))
 				img_pxl(w->img, x, y, draw_sphere(i, s, w));
 			else
-				img_pxl(w->img, x, y, 0);
+				img_pxl(w->img, x, y, hsvtorgb(hsv(1, 0, 50)));
 			++x;
 			py = py - (45.0 / (double)w->screen_x);
-			r = pan_to_vect(px, py);
+			r.pan = pan_to_vect(px, py);
 		}
 		x = 0;
 		++y;
