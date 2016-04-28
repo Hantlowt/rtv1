@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:01:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/28 13:19:43 by alhote           ###   ########.fr       */
+/*   Updated: 2016/04/28 14:21:41 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void			render(t_world *w)
 		}
 		x = 0;
 		++y;
-		py = w->cam->pany - (45.0) / 2;
+		py = w->cam->pany + (45.0) / 2;
 		px = px - ((w->screen_y * 45.0 / w->screen_x) / (double)w->screen_y);
 	}
 	mlx_put_image_to_window(w->mlx, w->win, w->img, 0, 0);

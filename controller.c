@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:22:17 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/28 10:34:07 by alhote           ###   ########.fr       */
+/*   Updated: 2016/04/28 14:50:53 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 int			keyboard(int keycode, void *data)
 {
 	t_world	*w;
-	static double angle = 1;
+	static double angle = -45;
 
 	w = data;
 	if (keycode == ESC)
 		exit(0);
 	if (keycode == LEFT)
-		angle = efmod(angle + 5.0, 360);
+		angle = efmod(angle + 10.0, 360);
 	if (keycode == RIGHT)
-		angle = efmod(angle - 5.0, 360);
+		angle = efmod(angle - 10.0, 360);
 	if (keycode == UP)
 		w->spheres->pos.z += 0.5;
 	if (keycode == DOWN)
