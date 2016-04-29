@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.h                                           :+:      :+:    :+:   */
+/*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/20 14:37:43 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/29 16:36:10 by alhote           ###   ########.fr       */
+/*   Created: 2016/04/29 10:47:51 by alhote            #+#    #+#             */
+/*   Updated: 2016/04/29 15:58:47 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPHERE_H
-# define SPHERE_H
-# include <stdlib.h>
+#ifndef OBJECT_H
+# define OBJECT_H
 # include "maths.h"
-# include "hsl.h"
 # include "ray.h"
-# include "object.h"
+# include "hsl.h"
+# include <stdlib.h>
 
-int			sphere_inter(t_ray r, t_object *s);
+typedef struct		s_object
+{
+	t_vector		pos;
+	t_hsl			color;
+	t_vector		i;
+	double			diffuse;
+	double			specular;
+	void			*data;
+	int				(*inter)(t_ray, struct s_object*);
+	struct s_object	*next;
+}					t_object;
+t_object			*init_obj(t_vector pos, t_hsl color);
+void				add_obj(t_object *begin, t_object *new);
 #endif

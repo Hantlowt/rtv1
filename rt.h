@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 15:14:06 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/28 13:20:10 by alhote           ###   ########.fr       */
+/*   Updated: 2016/04/29 15:30:52 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 # include <mlx.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include "sphere.h"
+# include "object.h"
 # include "camera.h"
 # include "light.h"
-# include "hsv.h"
 # include "maths.h"
-# include "ray.h"
 # ifdef __APPLE__
 #  define SCREEN_X 1920 / 2
 #  define SCREEN_Y 1080 / 2
@@ -34,16 +32,13 @@ typedef struct	s_world
 	void		*mlx;
 	void		*win;
 	void		*img;
-	int			screen_x;
-	int			screen_y;
 	t_camera	*cam;
-	t_sphere	*spheres;
+	t_object	*objects;
 	t_light		*lights;
 }				t_world;
-t_world			*init_world(int x, int y);
+t_world			*init_world();
 void			img_pxl(void *img, int x, int y, int color);
 void			render(t_world *w);
-t_sphere		*checsp(t_ray r, t_world *w, t_vector *i, t_sphere *ignore);
-int				simple_diffuse(t_vector i, t_sphere *s, t_world *w);
-int				draw_sphere(t_vector i, t_sphere *s, t_world *w);
+t_object		*check_objects(t_ray r, t_world *w, t_object *ignore);
+int				coloring(t_object *s, t_world *w);
 #endif

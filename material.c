@@ -15,7 +15,7 @@
 int				draw_sphere(t_vector i, t_sphere *s, t_world *w)
 {
 	if (!s->material)
-		return (hsvtorgb(s->color));
+		return (hsltorgb(s->color));
 	if (s->material == 1)
 		return (simple_diffuse(i, s, w));
 	return (0);
@@ -23,7 +23,7 @@ int				draw_sphere(t_vector i, t_sphere *s, t_world *w)
 
 int				simple_diffuse(t_vector i, t_sphere *s, t_world *w)
 {
-	t_hsv		f;
+	t_hsl		f;
 	t_light		*l;
 	t_vector	t;
 	t_ray		r;
@@ -48,5 +48,5 @@ int				simple_diffuse(t_vector i, t_sphere *s, t_world *w)
 		}
 		l = l->next;
 	}
-	return (hsvtorgb(f));
+	return (hsltorgb(f));
 }

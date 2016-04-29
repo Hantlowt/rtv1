@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.h                                           :+:      :+:    :+:   */
+/*   hsl.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/20 14:37:43 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/29 16:36:10 by alhote           ###   ########.fr       */
+/*   Created: 2016/04/27 09:32:52 by hantlowt          #+#    #+#             */
+/*   Updated: 2016/04/29 17:38:18 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPHERE_H
-# define SPHERE_H
-# include <stdlib.h>
+#ifndef HSL_H
+# define HSL_H
 # include "maths.h"
-# include "hsl.h"
-# include "ray.h"
-# include "object.h"
+# include <stdio.h>
 
-int			sphere_inter(t_ray r, t_object *s);
+typedef struct	s_hsl
+{
+	int			h;
+	double		s;
+	double		l;
+}				t_hsl;
+t_hsl			hsl(int h, double s, double l);
+int				hsltorgb(t_hsl c);
 #endif

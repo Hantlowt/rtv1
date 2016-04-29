@@ -6,19 +6,19 @@
 #    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/04/18 19:06:17 by alhote            #+#    #+#              #
-#    Updated: 2016/04/27 15:45:46 by alhote           ###   ########.fr        #
+#    Updated: 2016/04/29 16:29:03 by alhote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RTv1
 OS = $(shell uname)
 CC = clang
-CFLAGS  = -Wall -Wextra -Werror -Ofast
+CFLAGS  = -g -Wall -Wextra -Werror -Ofast
 INC_DIR = -Ilibft/includes \
 			-Idraw \
 
 SRCS = main.c world.c controller.c sphere.c vector.c maths.c draw.c camera.c\
-		light.c vector_operation.c hsv.c material.c
+		light.c vector_operation.c hsl.c object.c
 OBJECTS = $(SRCS:.c=.o)
 
 all: lib $(NAME)

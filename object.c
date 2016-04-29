@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.h                                           :+:      :+:    :+:   */
+/*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/20 14:37:43 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/29 16:36:10 by alhote           ###   ########.fr       */
+/*   Created: 2016/04/29 12:50:06 by alhote            #+#    #+#             */
+/*   Updated: 2016/04/29 16:28:08 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPHERE_H
-# define SPHERE_H
-# include <stdlib.h>
-# include "maths.h"
-# include "hsl.h"
-# include "ray.h"
-# include "object.h"
+#include "object.h"
 
-int			sphere_inter(t_ray r, t_object *s);
-#endif
+t_object	*init_obj(t_vector pos, t_hsl color)
+{
+	t_object	*new;
+
+	if (!(new = (t_object*)malloc(sizeof(t_object))))
+		return (0);
+	new->pos = pos;
+	new->color = color;
+	new->next = 0;
+	return (new);
+}
+
+void		add_obj(t_object *begin, t_object *new)
+{
+	while (begin->next)
+		begin = begin->next;
+	begin->next = new;
+}

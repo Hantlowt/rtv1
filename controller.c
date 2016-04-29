@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:22:17 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/28 14:50:53 by alhote           ###   ########.fr       */
+/*   Updated: 2016/04/29 18:35:24 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ int			keyboard(int keycode, void *data)
 	if (keycode == ESC)
 		exit(0);
 	if (keycode == LEFT)
-		angle = efmod(angle + 10.0, 360);
+		w->cam->pany += 10.0;
 	if (keycode == RIGHT)
-		angle = efmod(angle - 10.0, 360);
+		w->cam->pany -= 10.0;
 	if (keycode == UP)
-		w->spheres->pos.z += 0.5;
+		w->objects->pos.z += 0.5;
 	if (keycode == DOWN)
-		w->spheres->pos.z -= 0.5;
+		w->objects->pos.z -= 0.5;
 	w->lights->pos.x = cosd(angle) * 10;
 	w->lights->pos.z = sind(angle) * 10;
 	//printf("%f\n", angle);
