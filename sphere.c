@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 15:30:28 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/29 18:32:42 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/01 18:54:10 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,9 @@ int			sphere_inter(t_ray r, t_object *s)
 	s->i = vect(r.pos.x + r.pan.x * t, r.pos.y + r.pan.y * t, 0);
 	s->i.z = r.pos.z + r.pan.z * t;
 	return (0);
+}
+
+t_vector		sphere_normal(t_object *s)
+{
+	return (vect(s->i.x - s->pos.x, s->i.y - s->pos.y, s->i.z - s->pos.z));
 }

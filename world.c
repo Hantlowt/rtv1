@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:01:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/29 17:52:25 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/01 19:02:51 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void			render(t_world *w)
 		while (xy[0] < SCREEN_X)
 		{
 			if ((s = check_objects(r, w, 0)) && !coloring(s, w))
-				img_pxl(w->img, xy[0], xy[1], 0xFFFFFF);
+				img_pxl(w->img, xy[0], xy[1], hsltorgb(s->color));
 			else
 				img_pxl(w->img, xy[0], xy[1], 0);
 			xy[0]++;
@@ -87,7 +87,13 @@ void			render(t_world *w)
 
 int			coloring(t_object *s, t_world *w)
 {
-	if (w)
-		s->color.l = 100;
+	t_vector	normal = s->normal(s);
+
+	normal.x += s->i.x;
+	normal.y += s->i.y;
+	normal.z += s->i.z;
+	s->color.l = s->diffuse * get_cosangle(w->lights->pos, s->i, normal);
+	s->color.l /= 100;
+	printf("%f\n", s->color.l);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/29 10:47:51 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/29 15:58:47 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/01 18:54:19 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct		s_object
 	double			specular;
 	void			*data;
 	int				(*inter)(t_ray, struct s_object*);
+	t_vector		(*normal)(struct s_object*);
 	struct s_object	*next;
 }					t_object;
 t_object			*init_obj(t_vector pos, t_hsl color);

@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 15:14:06 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/29 15:30:52 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/01 17:50:27 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 # include "light.h"
 # include "maths.h"
 # ifdef __APPLE__
-#  define SCREEN_X 1920 / 2
-#  define SCREEN_Y 1080 / 2
+#  define SCREEN_X (1920.0 / 2.0)
+#  define SCREEN_Y (1080.0 / 2.0)
 # elif defined __linux__
-#  define SCREEN_X 500
-#  define SCREEN_Y 500
+#  define SCREEN_X 500.0
+#  define SCREEN_Y 500.0
 # endif
 
 typedef struct	s_world
