@@ -6,13 +6,13 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 15:30:28 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/01 18:54:10 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/01 19:28:08 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sphere.h"
 
-int			sphere_inter(t_ray r, t_object *s)
+int				sphere_inter(t_ray r, t_object *s)
 {
 	double	a;
 	double	b;

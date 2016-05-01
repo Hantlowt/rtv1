@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 09:37:27 by hantlowt          #+#    #+#             */
-/*   Updated: 2016/05/01 18:20:51 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/01 19:28:21 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ int				hsltorgb(t_hsl c)
 	int		rgb[3];
 	double	v[2];
 	double	hue;
+
 	c.h = (c.h > 360.0 ? 360.0 : c.h);
 	c.s = (c.s > 1.0 ? 1.0 : c.s);
 	c.l = (c.l > 1.0 ? 1.0 : c.l);
 	c.h = (c.h < 0 ? 0 : c.h);
 	c.s = (c.s < 0 ? 0 : c.s);
 	c.l = (c.l < 0 ? 0 : c.l);
-
 	if (c.s == 0)
 	{
 		rgb[0] = (unsigned char)(c.l * 255);

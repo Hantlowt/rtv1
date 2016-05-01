@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:01:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/01 19:02:51 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/01 19:16:14 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,15 @@ void			render(t_world *w)
 	mlx_put_image_to_window(w->mlx, w->win, w->img, 0, 0);
 }
 
-int			coloring(t_object *s, t_world *w)
+int				coloring(t_object *s, t_world *w)
 {
-	t_vector	normal = s->normal(s);
+	t_vector	normal;
 
+	normal = s->normal(s);
 	normal.x += s->i.x;
 	normal.y += s->i.y;
 	normal.z += s->i.z;
-	s->color.l = s->diffuse * get_cosangle(w->lights->pos, s->i, normal);
+	s->color.l += s->diffuse * get_cosangle(w->lights->pos, s->i, normal);
 	s->color.l /= 100;
-	printf("%f\n", s->color.l);
 	return (0);
 }
