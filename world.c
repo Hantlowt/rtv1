@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:01:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/01 19:16:14 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/02 21:02:55 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void			render(t_world *w)
 		}
 		xy[0] = 0;
 		xy[1]++;
-		p[1] = w->cam->pany + (45.0) / 2;
+		p[1] += 45.0;
 		p[0] -= ((SCREEN_Y * 45.0 / SCREEN_X) / SCREEN_Y);
 	}
 	mlx_put_image_to_window(w->mlx, w->win, w->img, 0, 0);
@@ -88,12 +88,18 @@ void			render(t_world *w)
 int				coloring(t_object *s, t_world *w)
 {
 	t_vector	normal;
+	t_vector	reflec;
 
 	normal = s->normal(s);
+	reflec = cross_product(w->lights->pos, normal);
 	normal.x += s->i.x;
 	normal.y += s->i.y;
 	normal.z += s->i.z;
+	reflec.x += s->i.x;
+	reflec.y += s->i.y;
+	reflec.z += s->i.z;
 	s->color.l += s->diffuse * get_cosangle(w->lights->pos, s->i, normal);
+	//s->color.l += s->specular * get_cosangle(reflec, s->i, w->cam->pos);
 	s->color.l /= 100;
 	return (0);
 }

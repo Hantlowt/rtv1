@@ -6,7 +6,7 @@
 #    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/04/18 19:06:17 by alhote            #+#    #+#              #
-#    Updated: 2016/04/29 16:29:03 by alhote           ###   ########.fr        #
+#    Updated: 2016/05/02 19:14:56 by alhote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INC_DIR = -Ilibft/includes \
 			-Idraw \
 
 SRCS = main.c world.c controller.c sphere.c vector.c maths.c draw.c camera.c\
-		light.c vector_operation.c hsl.c object.c
+		light.c vector_operation.c hsl.c object.c plane.c
 OBJECTS = $(SRCS:.c=.o)
 
 all: lib $(NAME)

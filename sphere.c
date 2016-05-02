@@ -6,13 +6,13 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 15:30:28 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/01 19:28:08 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/02 18:36:53 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sphere.h"
 
-int				sphere_inter(t_ray r, t_object *s)
+int			sphere_inter(t_ray r, t_object *s)
 {
 	double	a;
 	double	b;
@@ -39,7 +39,21 @@ int				sphere_inter(t_ray r, t_object *s)
 	return (0);
 }
 
-t_vector		sphere_normal(t_object *s)
+t_vector	sphere_normal(t_object *s)
 {
 	return (vect(s->i.x - s->pos.x, s->i.y - s->pos.y, s->i.z - s->pos.z));
+}
+
+t_object	*init_sphere(t_vector pos, double rayon, t_hsl color)
+{
+	double		*r;
+	t_object	*p;
+
+	r = (double*)malloc(sizeof(double));
+	*r = rayon;
+	p = init_obj(pos, color);
+	p->inter = &sphere_inter;
+	p->normal = &sphere_normal;
+	p->data = r;
+	return (p);
 }

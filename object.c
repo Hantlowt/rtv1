@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/29 12:50:06 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/01 19:03:22 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/02 18:23:10 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_object	*init_obj(t_vector pos, t_hsl color)
 	new->pos = pos;
 	new->color = color;
 	new->diffuse = 50.0;
+	new->specular = 10.0;
 	new->next = 0;
 	return (new);
 }
