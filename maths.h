@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 18:21:03 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/28 09:59:55 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/03 17:16:03 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,6 @@ t_vector		cross_product(t_vector a, t_vector b);
 t_vector		transformation_vector(t_vector forward, t_vector ref);
 double			get_cosangle(t_vector a, t_vector b, t_vector c);
 t_vector		addition_vect(t_vector a, t_vector b);
+t_vector		sub_vect(t_vector a, t_vector b);
+double			dot_vect(t_vector a, t_vector b);
 #endif

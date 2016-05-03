@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 10:11:13 by alhote            #+#    #+#             */
-/*   Updated: 2016/04/28 09:59:44 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/03 17:15:42 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,18 @@ t_vector		addition_vect(t_vector a, t_vector b)
 	return (vect(x, y, z));
 }
 
+t_vector		sub_vect(t_vector a, t_vector b)
+{
+	double	x;
+	double	y;
+	double	z;
+
+	x = a.x - b.x;
+	y = a.y - b.y;
+	z = a.z - b.z;
+	return (vect(x, y, z));
+}
+
 t_vector		norm_vect(t_vector v)
 {
 	double	size;
@@ -47,9 +59,9 @@ t_vector		norm_vect(t_vector v)
 	return (v);
 }
 
-t_vector		transformation_vector(t_vector forward, t_vector ref)
+double			dot_vect(t_vector a, t_vector b)
 {
-	return (cross_product(cross_product(forward, ref), forward));
+	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
 t_vector		rotate(t_vector v, t_vector a, double r)

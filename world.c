@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:01:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/02 21:02:55 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/03 18:48:15 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,16 +89,21 @@ int				coloring(t_object *s, t_world *w)
 {
 	t_vector	normal;
 	t_vector	reflec;
+	t_vector	light;
+	t_vector	viewer;
 
 	normal = s->normal(s);
+	light = norm_vect(sub_vect(w->lights->pos, s->i));
+	viewer = sub_vect(s->i, w->cam->pos);
 	reflec = cross_product(w->lights->pos, normal);
-	normal.x += s->i.x;
-	normal.y += s->i.y;
-	normal.z += s->i.z;
+	//normal.x += s->i.x;
+	//normal.y += s->i.y;
+	//normal.z += s->i.z;
 	reflec.x += s->i.x;
 	reflec.y += s->i.y;
 	reflec.z += s->i.z;
-	s->color.l += s->diffuse * get_cosangle(w->lights->pos, s->i, normal);
+	//printf("%f\n", dot_vect(light, viewer));
+	s->color.l += s->diffuse * dot_vect(light, normal);
 	//s->color.l += s->specular * get_cosangle(reflec, s->i, w->cam->pos);
 	s->color.l /= 100;
 	return (0);

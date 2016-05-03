@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/21 16:25:42 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/02 16:52:24 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/03 16:28:31 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_camera			*init_camera(t_vector pos, double px, double py)
 
 	px = efmod(px, 360.0);
 	py = efmod(py, 360.0);
-	n = vect(sind(py) * cosd(px), sind(px), cosd(py) * cosd(px));
+	n = vect(cosd(px) * cosd(py), cosd(px), sind(py) * cosd(px));
 	return (norm_vect(n));
 }*/
 
