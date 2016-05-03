@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:01:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/03 18:48:15 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/03 23:10:48 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ t_object		*check_objects(t_ray r, t_world *w, t_object *ignore)
 			{
 				distance = dist(r.pos, s->i);
 				out = s;
+				touched = 1;
 			}
-			touched = 1;
+			//touched = 1;
 		}
 		s = s->next;
 	}
@@ -90,11 +91,16 @@ int				coloring(t_object *s, t_world *w)
 	t_vector	normal;
 	t_vector	reflec;
 	t_vector	light;
-	t_vector	viewer;
+	t_ray		r;
+	//t_vector	viewer;
 
 	normal = s->normal(s);
+	r.pos = s->i;
+	r.pan = norm_vect(sub_vect(w->lights->pos, s->i));
 	light = norm_vect(sub_vect(w->lights->pos, s->i));
-	viewer = sub_vect(s->i, w->cam->pos);
+	if (!check_objects(r, w, s))
+	{
+	//viewer = sub_vect(s->i, w->cam->pos);
 	reflec = cross_product(w->lights->pos, normal);
 	//normal.x += s->i.x;
 	//normal.y += s->i.y;
@@ -103,8 +109,11 @@ int				coloring(t_object *s, t_world *w)
 	reflec.y += s->i.y;
 	reflec.z += s->i.z;
 	//printf("%f\n", dot_vect(light, viewer));
-	s->color.l += s->diffuse * dot_vect(light, normal);
+	s->color.l = s->diffuse * dot_vect(light, normal);
 	//s->color.l += s->specular * get_cosangle(reflec, s->i, w->cam->pos);
 	s->color.l /= 100;
+	}
+	else
+		s->color.l = 0;
 	return (0);
 }

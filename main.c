@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 14:44:17 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/03 18:54:50 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/03 22:12:34 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@
 int		main(void)
 {
 	t_world		*w;
-	double		r;
 
 	w = init_world();
-	r = 1;
 	w->cam = init_camera(vect(0.0, 0.0, -30.0), 0.0, 0.0);
 	w->lights = init_light(vect(0.0, 0.0, -20.0), 2);
 	//add_light(w->lights, init_light(vect(cosd(10) * 10, 0.0, sind(10) * 10), 1));
