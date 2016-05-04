@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controller.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:22:17 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/03 18:55:00 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/04 07:14:05 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int			keyboard(int keycode, void *data)
 	else if (keycode == LEFT)
 		w->cam->pos.x += 0.5;
 	else if (keycode == RIGHT)
-		w->cam->pos.x -= 0.5;
+		w->cam->pany += 15.0;
 	else if (keycode == UP)
 		w->cam->pos.z += 0.5;
 	else if (keycode == DOWN)

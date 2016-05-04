@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
+#    By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/04/18 19:06:17 by alhote            #+#    #+#              #
-#    Updated: 2016/05/02 19:14:56 by alhote           ###   ########.fr        #
+#    Updated: 2016/05/04 08:28:43 by hantlowt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ else ifeq ($(OS),Linux)
 endif
 
 %.o: %.c
-	@gcc $(CFLAGS) $(INC_DIR) -c $<
+	@$(CC) $(CFLAGS) $(INC_DIR) -c $<
 
 clean:
 	@make -C libft/ clean

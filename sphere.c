@@ -6,7 +6,7 @@
 /*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 15:30:28 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/03 22:42:31 by hantlowt         ###   ########.fr       */
+/*   Updated: 2016/05/04 08:38:24 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int			sphere_inter(t_ray r, t_object *s)
 	double	delta;
 	double	t;
 
+	r.pan = norm_vect(r.pan);
 	a = (r.pan.x * r.pan.x) + (r.pan.y * r.pan.y) + (r.pan.z * r.pan.z);
 	b = 2 * (r.pan.x * (r.pos.x - s->pos.x) + r.pan.y * (r.pos.y - s->pos.y)
 	+ r.pan.z * (r.pos.z - s->pos.z));
@@ -34,6 +35,8 @@ int			sphere_inter(t_ray r, t_object *s)
 	else
 		t = ((-b + sqrtf(delta)) / (2 * a) < (-b - sqrtf(delta)) / (2 * a) ?
 		(-b + sqrtf(delta)) / (2 * a) : (-b - sqrtf(delta)) / (2 * a));
+	if (t < 1)
+		return (1);
 	s->i = vect(r.pos.x + r.pan.x * t, r.pos.y + r.pan.y * t, 0);
 	s->i.z = r.pos.z + r.pan.z * t;
 	return (0);
