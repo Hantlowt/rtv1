@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/21 16:25:42 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/04 07:17:47 by hantlowt         ###   ########.fr       */
+/*   Updated: 2016/05/04 13:09:48 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_camera			*init_camera(t_vector pos, double px, double py)
 	return (new);
 }
 
-/*t_vector			pan_to_vect(double px, double py)
+t_vector			pan_to_vect(double px, double py)
 {
 	t_vector	n;
 
@@ -32,7 +32,7 @@ t_camera			*init_camera(t_vector pos, double px, double py)
 	py = efmod(py, 360.0);
 	n = vect(cosd(py) * cosd(px), sind(px), sind(py) * cosd(px));
 	return (norm_vect(n));
-}*/
+}
 
 /*t_vector			pan_to_vect(double px, double py)
 {
@@ -44,7 +44,7 @@ t_camera			*init_camera(t_vector pos, double px, double py)
 	return (norm_vect(n));
 }*/
 
-t_vector			pan_to_vect(double px, double py)
+/*t_vector			pan_to_vect(double px, double py)
 {
 	t_vector	n;
 
@@ -52,4 +52,4 @@ t_vector			pan_to_vect(double px, double py)
 	py = efmod(py, 360.0);
 	n = vect(sind(py) * cosd(px), sind(px), cosd(py) * cosd(px));
 	return (norm_vect(n));
-}
+}*/

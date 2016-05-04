@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:01:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/03 23:10:48 by hantlowt         ###   ########.fr       */
+/*   Updated: 2016/05/04 14:37:13 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,9 @@ int				coloring(t_object *s, t_world *w)
 	{
 	//viewer = sub_vect(s->i, w->cam->pos);
 	reflec = cross_product(w->lights->pos, normal);
-	//normal.x += s->i.x;
-	//normal.y += s->i.y;
-	//normal.z += s->i.z;
 	reflec.x += s->i.x;
 	reflec.y += s->i.y;
 	reflec.z += s->i.z;
-	//printf("%f\n", dot_vect(light, viewer));
 	s->color.l = s->diffuse * dot_vect(light, normal);
 	//s->color.l += s->specular * get_cosangle(reflec, s->i, w->cam->pos);
 	s->color.l /= 100;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 15:30:28 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/04 08:38:24 by hantlowt         ###   ########.fr       */
+/*   Updated: 2016/05/04 14:19:55 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int			sphere_inter(t_ray r, t_object *s)
 	double	b;
 	double	c;
 	double	delta;
-	double	t;
+	double	t[3];
 
 	r.pan = norm_vect(r.pan);
 	a = (r.pan.x * r.pan.x) + (r.pan.y * r.pan.y) + (r.pan.z * r.pan.z);
@@ -31,14 +31,18 @@ int			sphere_inter(t_ray r, t_object *s)
 	if (delta < 0)
 		return (1);
 	else if (delta == 0)
-		t = (-b + sqrtf(delta)) / (2 * a);
+		t[2] = (-b + sqrtf(delta)) / (2 * a);
 	else
-		t = ((-b + sqrtf(delta)) / (2 * a) < (-b - sqrtf(delta)) / (2 * a) ?
-		(-b + sqrtf(delta)) / (2 * a) : (-b - sqrtf(delta)) / (2 * a));
-	if (t < 1)
+	{
+		t[0] = (-b + sqrtf(delta)) / (2 * a);
+		t[1] = (-b - sqrtf(delta)) / (2 * a);
+		t[2] = (t[0] < t[1] ? t[0] : t[1]);
+		t[2] = (t[2] < 0 ? t[1] : t[2]);
+	}
+	if (t[2] < 0)
 		return (1);
-	s->i = vect(r.pos.x + r.pan.x * t, r.pos.y + r.pan.y * t, 0);
-	s->i.z = r.pos.z + r.pan.z * t;
+	s->i = vect(r.pos.x + r.pan.x * t[2], r.pos.y + r.pan.y * t[2], 0);
+	s->i.z = r.pos.z + r.pan.z * t[2];
 	return (0);
 }
 
