@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:22:17 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/04 13:09:13 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/04 16:57:26 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ int			keyboard(int keycode, void *data)
 	if (keycode == ESC)
 		exit(0);
 	else if (keycode == LEFT)
-		w->cam->pos.x -= 0.5;
+		w->cam->pany += 5.0;
 	else if (keycode == RIGHT)
-		w->cam->pos.x += 0.5;
+		w->cam->pany -= 5.0;
 	else if (keycode == UP)
-		w->cam->pos.z += 0.5;
+		w->cam->pos = addition_vect(w->cam->pos, pan_to_vect(w->cam->panx, w->cam->pany));
 	else if (keycode == DOWN)
-		w->cam->pos.z -= 0.5;
+		w->cam->pos = addition_vect(w->cam->pos, pan_to_vect(w->cam->panx, w->cam->pany - 180));
 	else
 		angle += 15.0;
 	w->lights->pos.x = cosd(angle) * 20;

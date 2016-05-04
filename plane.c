@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 18:44:29 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/03 18:38:18 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/04 16:26:54 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 int			plane_inter(t_ray r, t_object *s)
 {
 	double		t;
-	//t_vector	d;
+	double		d;
 	t_vector	*or;
 
 	or = (t_vector*)s->data;
+	d = dot_vect(sub_vect(s->pos, r.pos), *or) / dot_vect(r.pan, *or);
 	t = -((or->x * r.pos.x + or->y * r.pos.y + or->z * r.pos.y + dist(*or, s->pos)) / (or->x * r.pan.x + or->y * r.pan.y + or->z * r.pan.z));
 	//t = -r.pos.y / r.pan.y;
 	if (t < 0)
