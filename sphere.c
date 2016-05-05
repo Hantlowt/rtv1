@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 15:30:28 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/04 14:19:55 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/05 15:12:48 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ int			sphere_inter(t_ray r, t_object *s)
 
 t_vector	sphere_normal(t_object *s)
 {
-	return (vect(s->i.x - s->pos.x, s->i.y - s->pos.y, s->i.z - s->pos.z));
+	t_vector	n;
+
+	n = vect(s->i.x - s->pos.x, s->i.y - s->pos.y, s->i.z - s->pos.z);
+	return (norm_vect(n));
 }
 
 t_object	*init_sphere(t_vector pos, double rayon, t_hsl color)

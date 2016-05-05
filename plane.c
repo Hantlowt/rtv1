@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 18:44:29 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/04 16:26:54 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/05 14:56:12 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,30 @@
 int			plane_inter(t_ray r, t_object *s)
 {
 	double		t;
-	double		d;
+	//double		d;
 	t_vector	*or;
+	t_vector	norminv;
+	//t_vector	temp;
+	//double		denom;
 
 	or = (t_vector*)s->data;
-	d = dot_vect(sub_vect(s->pos, r.pos), *or) / dot_vect(r.pan, *or);
-	t = -((or->x * r.pos.x + or->y * r.pos.y + or->z * r.pos.y + dist(*or, s->pos)) / (or->x * r.pan.x + or->y * r.pan.y + or->z * r.pan.z));
+	/*denom = dot_vect(*or, r.pan);
+	if (denom > 1e-6)
+	{
+		temp = sub_vect(s->pos, r.pos);
+		t = dot_vect(temp, *or) / denom;
+	}
+	else
+		return (1);*/
+	//d = dot_vect(sub_vect(s->pos, r.pos), *or) / dot_vect(r.pan, *or);
+	//t = -((or->x * r.pos.x + or->y * r.pos.y + or->z * r.pos.y + dist(*or, s->pos)) / (or->x * r.pan.x + or->y * r.pan.y + or->z * r.pan.z));
+	norminv.x = -or->x;
+	norminv.y = -or->y;
+	norminv.z = -or->z;
+	t = dot_vect(norminv, sub_vect(r.pos, s->pos)) / dot_vect(*or, r.pan);
 	//t = -r.pos.y / r.pan.y;
+	//d =
+	//t =
 	if (t < 0)
 		return (1);
 	s->i = vect(r.pos.x + r.pan.x * t, r.pos.y + r.pan.y * t, 0);

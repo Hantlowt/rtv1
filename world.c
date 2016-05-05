@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:01:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/04 14:37:13 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/05 16:00:26 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,24 +92,31 @@ int				coloring(t_object *s, t_world *w)
 	t_vector	reflec;
 	t_vector	light;
 	t_ray		r;
-	//t_vector	viewer;
+	t_vector	viewer;
+	t_light		*l;
 
 	normal = s->normal(s);
 	r.pos = s->i;
-	r.pan = norm_vect(sub_vect(w->lights->pos, s->i));
-	light = norm_vect(sub_vect(w->lights->pos, s->i));
-	if (!check_objects(r, w, s))
+	l = w->lights;
+	s->color.l = 0;
+	while (l)
 	{
-	//viewer = sub_vect(s->i, w->cam->pos);
-	reflec = cross_product(w->lights->pos, normal);
-	reflec.x += s->i.x;
-	reflec.y += s->i.y;
-	reflec.z += s->i.z;
-	s->color.l = s->diffuse * dot_vect(light, normal);
-	//s->color.l += s->specular * get_cosangle(reflec, s->i, w->cam->pos);
-	s->color.l /= 100;
+		r.pan = norm_vect(sub_vect(l->pos, s->i));
+		light = norm_vect(sub_vect(l->pos, s->i));
+		if (!check_objects(r, w, s))
+		{
+			viewer = norm_vect(sub_vect(s->i, w->cam->pos));
+			reflec.x = light.x - 2.0 * dot_vect(light, normal) * normal.x;
+			reflec.y = light.y - 2.0 * dot_vect(light, normal) * normal.y;
+			reflec.z = light.z - 2.0 * dot_vect(light, normal) * normal.z;
+			reflec = norm_vect(reflec);
+			if (dot_vect(light, normal) > 0)
+				s->color.l += s->diffuse * dot_vect(light, normal);
+			if (dot_vect(viewer, reflec) > 0)
+				s->color.l += s->specular * powf(dot_vect(viewer, reflec), 20);
+		}
+		s->color.l /= 100;
+		l = l->next;
 	}
-	else
-		s->color.l = 0;
 	return (0);
 }
