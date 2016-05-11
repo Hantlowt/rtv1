@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 18:44:29 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/05 14:56:12 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/06 07:18:56 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_vector	plane_normal(t_object *s)
 	t_vector	*n;
 
 	n = s->data;
-	return (*n);
+	return (norm_vect(*n));
 }
 
 t_object	*init_plane(t_vector pos, t_vector orientation, t_hsl color)

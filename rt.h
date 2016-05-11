@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 15:14:06 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/04 17:01:56 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/06 08:00:51 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 #  define SCREEN_X (500.0)
 #  define SCREEN_Y (400.0)
 # elif defined __linux__
-#  define SCREEN_X 500.0
-#  define SCREEN_Y 500.0
+#  define SCREEN_X 400.0
+#  define SCREEN_Y 300.0
 # endif
 
 typedef struct	s_world

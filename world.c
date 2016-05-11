@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:01:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/05 16:00:26 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/11 21:13:54 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int				coloring(t_object *s, t_world *w)
 	t_ray		r;
 	t_vector	viewer;
 	t_light		*l;
+	t_object	*o;
 
 	normal = s->normal(s);
 	r.pos = s->i;
@@ -103,7 +104,8 @@ int				coloring(t_object *s, t_world *w)
 	{
 		r.pan = norm_vect(sub_vect(l->pos, s->i));
 		light = norm_vect(sub_vect(l->pos, s->i));
-		if (!check_objects(r, w, s))
+		if (!(o = check_objects(r, w, s)) ||
+		dist(s->i, o->i) > dist(s->i, l->pos))
 		{
 			viewer = norm_vect(sub_vect(s->i, w->cam->pos));
 			reflec.x = light.x - 2.0 * dot_vect(light, normal) * normal.x;
@@ -115,8 +117,8 @@ int				coloring(t_object *s, t_world *w)
 			if (dot_vect(viewer, reflec) > 0)
 				s->color.l += s->specular * powf(dot_vect(viewer, reflec), 20);
 		}
-		s->color.l /= 100;
 		l = l->next;
 	}
+	s->color.l /= 100;
 	return (0);
 }
