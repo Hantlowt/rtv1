@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   object.c                                           :+:      :+:    :+:   */
+/*   cylinder.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/29 12:50:06 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/12 14:40:14 by alhote           ###   ########.fr       */
+/*   Created: 2016/05/12 15:22:15 by alhote            #+#    #+#             */
+/*   Updated: 2016/05/12 15:49:00 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "object.h"
+#ifndef CYLINDER_H
+# define CYLINDER_H
+# include <stdlib.h>
+# include "maths.h"
+# include "hsl.h"
+# include "ray.h"
+# include "object.h"
+# include "rt.h"
 
-t_object	*init_obj(t_vector pos, t_hsl color)
+typedef struct	s_cylinder
 {
-	t_object	*new;
+	t_vector	dir;
+	double		r;
+}				t_cylinder;
 
-	if (!(new = (t_object*)malloc(sizeof(t_object))))
-		return (0);
-	new->pos = pos;
-	new->color = color;
-	new->diffuse = 30.0;
-	new->specular = 0.0;
-	new->next = 0;
-	return (new);
-}
-
-void		add_obj(t_object *begin, t_object *new)
-{
-	while (begin->next)
-		begin = begin->next;
-	begin->next = new;
-}
+int				cylinder_inter(t_ray r, t_object *s);
+t_vector		cylinder_normal(t_object *s);
+t_object		*init_cylinder(t_vector pos, t_vector orientation, t_hsl color);
+#endif

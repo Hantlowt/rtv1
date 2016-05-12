@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 15:14:06 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/06 08:00:51 by hantlowt         ###   ########.fr       */
+/*   Updated: 2016/05/12 14:28:26 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include "light.h"
 # include "maths.h"
 # ifdef __APPLE__
-#  define SCREEN_X (500.0)
-#  define SCREEN_Y (400.0)
+#  define SCREEN_X (1920.0)
+#  define SCREEN_Y (1080.0)
 # elif defined __linux__
 #  define SCREEN_X 400.0
 #  define SCREEN_Y 300.0

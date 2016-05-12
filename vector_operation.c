@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 10:11:13 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/05 10:59:50 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/11 14:29:29 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_vector		norm_vect(t_vector v)
 {
 	double	size;
 
-	size = sqrtf(powf(v.x, 2) + powf(v.y, 2) + powf(v.z, 2));
+	size = sqrtf(powf(v.x, 2.0) + powf(v.y, 2.0) + powf(v.z, 2.0));
 	v.x /= size;
 	v.y /= size;
 	v.z /= size;
@@ -82,5 +82,5 @@ t_vector		rotate(t_vector v, t_vector a, double r)
 	+ v.z * (t * a.y * a.z - s * a.x);
 	n.z = v.x * (t * a.x * a.z - s * a.y) + v.y * (t * a.y * a.z + s * a.x)
 	+ v.z * (t * a.z * a.z + c);
-	return (n);
+	return (norm_vect(n));
 }

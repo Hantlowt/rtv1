@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:01:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/11 21:13:54 by hantlowt         ###   ########.fr       */
+/*   Updated: 2016/05/12 15:00:16 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int				coloring(t_object *s, t_world *w)
 	normal = s->normal(s);
 	r.pos = s->i;
 	l = w->lights;
-	s->color.l = 0;
+	s->color.l = 10;
 	while (l)
 	{
 		r.pan = norm_vect(sub_vect(l->pos, s->i));

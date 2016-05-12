@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   plane.c                                            :+:      :+:    :+:   */
+/*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/02 18:44:29 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/12 15:21:49 by alhote           ###   ########.fr       */
+/*   Created: 2016/05/12 15:36:59 by alhote            #+#    #+#             */
+/*   Updated: 2016/05/12 15:48:35 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "plane.h"
+#include "cylinder.h"
 
-int			plane_inter(t_ray r, t_object *s)
+int			cylinder_inter(t_ray r, t_object *s)
 {
-	double		t;
-	t_vector	*or;
-	t_vector	norminv;
+	double		a;
+	double		b;
+	double		c;
+	double		t[3];
+	t_vector	*d;
 
-	or = (t_vector*)s->data;
-	norminv.x = -or->x;
-	norminv.y = -or->y;
-	norminv.z = -or->z;
+	d = (t_cylinder*)s->data;
 	t = dot_vect(norminv, sub_vect(r.pos, s->pos)) / dot_vect(*or, r.pan);
 	if (t < 0)
 		return (1);
@@ -30,7 +29,7 @@ int			plane_inter(t_ray r, t_object *s)
 	return (0);
 }
 
-t_vector	plane_normal(t_object *s)
+t_vector	cylinder_normal(t_object *s)
 {
 	t_vector	*n;
 
@@ -38,7 +37,7 @@ t_vector	plane_normal(t_object *s)
 	return (norm_vect(*n));
 }
 
-t_object	*init_plane(t_vector pos, t_vector orientation, t_hsl color)
+t_object	*init_cylinder(t_vector pos, t_vector orientation, t_hsl color)
 {
 	t_vector	*or;
 	t_object	*p;
@@ -46,8 +45,8 @@ t_object	*init_plane(t_vector pos, t_vector orientation, t_hsl color)
 	or = (t_vector*)malloc(sizeof(t_vector));
 	*or = orientation;
 	p = init_obj(pos, color);
-	p->inter = &plane_inter;
-	p->normal = &plane_normal;
+	p->inter = &cylinder_inter;
+	p->normal = &cylinder_normal;
 	p->data = or;
 	return (p);
 }

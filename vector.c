@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 15:49:23 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/03 22:50:46 by hantlowt         ###   ########.fr       */
+/*   Updated: 2016/05/11 14:53:27 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_vector		vect(double x, double y, double z)
 
 double			dist(t_vector a, t_vector b)
 {
-	return (sqrtf(powf(a.x - b.x, 2) + powf(a.y - b.y, 2) + powf(a.z - b.z, 2)));
+	return (sqrtf(powf(a.x - b.x, 2.0) + powf(a.y - b.y, 2.0) + powf(a.z - b.z, 2.0)));
 }
 
 double			get_cosangle(t_vector a, t_vector b, t_vector c)
@@ -36,7 +36,7 @@ double			get_cosangle(t_vector a, t_vector b, t_vector c)
 	AB = dist(a, b);
 	BC = dist(b, c);
 	AC = dist(a, c);
-	return ((powf(BC, 2) + powf(AB, 2) - powf(AC, 2)) / (2 * BC * AB));
+	return ((powf(BC, 2.0) + powf(AB, 2.0) - powf(AC, 2.0)) / (2.0 * BC * AB));
 }
 
 t_vector		transformation_vector(t_vector forward, t_vector ref)
