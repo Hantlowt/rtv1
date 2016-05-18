@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 14:44:17 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/12 14:38:17 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/18 15:43:54 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "object.h"
 #include "sphere.h"
 #include "plane.h"
+#include "cylinder.h"
 
 int		main(void)
 {
@@ -32,6 +33,7 @@ int		main(void)
 	add_obj(w->objects, init_sphere(vect(-5.0, 4.0, 9.0), 1.0, hsl(205, 50, 100)));
 	add_obj(w->objects, init_plane(vect(-10.0, 0.0, 0.0), vect(1.0, 0.0, 0.0), hsl(100, 10, 100)));
 	add_obj(w->objects, init_plane(vect(0.0, 0.0, 10.0), vect(0.0, 0.0, -1.0), hsl(100, 10, 100)));
+	add_obj(w->objects, init_cylinder(vect(0.0, 0.0, 0.0), vect(0.0, 1.0, 1.0), hsl(100, 10, 100)));
 	//w->objects = init_sphere(vect(0.0, 0.0, 0.0), 1.0, hsl(205, 100, 100));
 	//add_sphere(w->spheres, init_sphere(vect(0.0, 1.0, 0.0), 1.0, hsl(5, 100, 50)));
 	mlx_key_hook(w->win, keyboard, w);
