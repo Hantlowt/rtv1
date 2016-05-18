@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/12 15:36:59 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/12 15:48:35 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/18 13:46:31 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_vector	cylinder_normal(t_object *s)
 
 	n = s->data;
 	return (norm_vect(*n));
+	
 }
 
 t_object	*init_cylinder(t_vector pos, t_vector orientation, t_hsl color)
