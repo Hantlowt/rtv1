@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/12 15:36:59 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/18 16:24:37 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/18 22:12:33 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,24 @@ int			cylinder_inter(t_ray r, t_object *s)
 
 t_vector	cylinder_normal(t_object *s)
 {
-	t_vector	*n;
+	//static int toto = 0;
+	double	t[3];
+	double	r[3];
+	t_vector	n;
+	t_cylinder	*cy;
 
-	n = s->data;
-	return (norm_vect(*n));
+	cy = s->data;
+	t[0] = sqrt((s->i.x - s->pos.x) / powf(cy->dir.x, 2));
+	t[1] = sqrt((s->i.y - s->pos.y) / powf(cy->dir.y, 2));
+	t[2] = sqrt((s->i.z - s->pos.z) / powf(cy->dir.z, 2));
+		//printf("%f %f %f %f\n", s->i.z, s->pos.z, cy->dir.z, t);
+		//toto = 1;
+	//printf("%d %d %d\n", (isnan(t[0]) || isinf(t[0])), (isnan(t[1]) || isinf(t[1])), (isnan(t[2]) || isinf(t[2])));
+	r[0] = (s->i.x - (s->pos.x + cy->dir.x * t[2]));
+	r[1] = (s->i.y - (s->pos.y + cy->dir.y * t[2]));
+	r[2] = (s->i.z - (s->pos.z + cy->dir.z * t[2]));
+	n = vect(r[0], r[1], r[2]);
+	return (norm_vect(n));
 }
 
 t_object	*init_cylinder(t_vector pos, t_vector orientation, t_hsl color)
