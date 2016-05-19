@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controller.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:22:17 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/06 07:47:04 by hantlowt         ###   ########.fr       */
+/*   Updated: 2016/05/19 14:39:32 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int			keyboard(int keycode, void *data)
 	else if (keycode == RIGHT)
 		w->cam->pany -= 5.0;
 	else if (keycode == UP)
-		w->cam->pos = addition_vect(w->cam->pos, pan_to_vect(w->cam->panx, w->cam->pany));
+		w->cam->pos = addition_vect(w->cam->pos, pan_to_vect(0, w->cam->pany));
 	else if (keycode == DOWN)
-		w->cam->pos = addition_vect(w->cam->pos, pan_to_vect(w->cam->panx, w->cam->pany - 180));
+		w->cam->pos = addition_vect(w->cam->pos, pan_to_vect(0, w->cam->pany - 180));
 	else
 		angle += 15.0;
 	w->lights->pos.x = cosd(angle) * 20;

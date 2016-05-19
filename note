@@ -8,3 +8,25 @@
 (((I.x - (C.x + b.x * t)) * b.x * t) + ((I.y - (C.y + b.y * t)) * b.y * t) + ((I.z - (C.z + b.z * t)) * b.z * t)) = 0
 
 t = (-b.x * C.x - b.y * C.y - b.z * C.z + i.x * b.x + i.y * b.y + i.z * b.z) / (powf(b.x, 2) + powf(b.y, 2) + powf(b.z, 2))
+
+Equation du cone :
+x^2 + y^2 = z^2 * (tan a)^2
+(x^2 + y^2) / z^2 = (tan a)^2
+
+x = (cam.pos.x + cam.dir.x * t)
+y = (cam.pos.y + cam.dir.y * t)
+z = (cam.pos.z + cam.dir.z * t)
+
+donc ((cam.pos.x + cam.dir.x * t)^2 + (cam.pos.y + cam.dir.y * t)^2) / (cam.pos.z + cam.dir.z * t)^2 = (tan a)^2
+
+(((P.x + D.x * t)^2 + (P.y + D.y * t)^2) / (P.z + D.z * t)^2) - (tan(a)) = 0
+
+(((P.x + D.x * t)^2 + (P.y + D.y * t)^2) / (P.z + D.z * t)^2) = tan(a)
+
+t = (-sqrt((2 a b cos(r)+2 c d cos(r)-2 e f sin(r))^2-4 (a^2 cos(r)+c^2 cos(r)-e^2 sin(r))
+ (b^2 cos(r)+d^2 cos(r)-f^2 sin(r)))-2 a b cos(r)-2 c d cos(r)+2 e f sin(r))
+ /(2 (b^2 cos(r)+d^2 cos(r)-f^2 sin(r)))
+
+t = (-sqrt((2 * a * b * cos(r) + 2 * c * d * cos(r) - 2 * e * f * sin(r))^2 - 4 * (a^2 * cos(r) + c^2 * cos(r) - e^2 * sin(r))
+* (b^2 * cos(r) + d^2 * cos(r) - f^2 * sin(r))) - 2 * a * b * cos(r) - 2 * c * d * cos(r) + 2 * e * f * sin(r))
+  / (2 * (b^2 * cos(r) + d^2 * cos(r) - f^2 * sin(r)))
