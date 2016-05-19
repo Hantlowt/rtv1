@@ -7,3 +7,4 @@
 
 (((I.x - (C.x + b.x * t)) * b.x * t) + ((I.y - (C.y + b.y * t)) * b.y * t) + ((I.z - (C.z + b.z * t)) * b.z * t)) = 0
 
+t = (-b.x * C.x - b.y * C.y - b.z * C.z + i.x * b.x + i.y * b.y + i.z * b.z) / (powf(b.x, 2) + powf(b.y, 2) + powf(b.z, 2))
