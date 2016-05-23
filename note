@@ -30,3 +30,7 @@ t = (-sqrt((2 a b cos(r)+2 c d cos(r)-2 e f sin(r))^2-4 (a^2 cos(r)+c^2 cos(r)-e
 t = (-sqrt((2 * a * b * cos(r) + 2 * c * d * cos(r) - 2 * e * f * sin(r))^2 - 4 * (a^2 * cos(r) + c^2 * cos(r) - e^2 * sin(r))
 * (b^2 * cos(r) + d^2 * cos(r) - f^2 * sin(r))) - 2 * a * b * cos(r) - 2 * c * d * cos(r) + 2 * e * f * sin(r))
   / (2 * (b^2 * cos(r) + d^2 * cos(r) - f^2 * sin(r)))
+
+  (CA.x * BA.x + CA.y * BA.y + CA.z * BA.z) + (CI.x + BA.x + CI.y * BA.y + CI.z * BA.z) = 0
+
+  (A.x * B.x + A.y * B.y + A.z * B.z) + (I.x + B.x + I.y * B.y + I.z * B.z) = 0

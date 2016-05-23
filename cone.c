@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/19 16:05:52 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/19 16:25:31 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/23 13:29:48 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,24 +54,14 @@ int			cone_inter(t_ray r, t_object *s)
 
 t_vector	cone_normal(t_object *s)
 {
-	//static int toto = 0;
-	double	t;
-	double	r[3];
-	int		i;
 	t_vector	n;
-	t_cone	*cy;
+	t_vector	a;
+	t_cone	*co;
 
-	cy = s->data;
-	i = 0;
-	t = (-cy->dir.x * s->pos.x - cy->dir.y * s->pos.y - cy->dir.z * s->pos.z + s->i.x * cy->dir.x
-		+ s->i.y * cy->dir.y + s->i.z * cy->dir.z) /
-		(powf(cy->dir.x, 2) + powf(cy->dir.y, 2) + powf(cy->dir.z, 2));
-	r[0] = (s->i.x - (s->pos.x + cy->dir.x * t));
-	r[1] = (s->i.y - (s->pos.y + cy->dir.y * t));
-	r[2] = (s->i.z - (s->pos.z + cy->dir.z * t));
-	//n = vect(r[0], r[1], r[2]);
-	n = vect(r[0], r[1], r[2]);
-	return (norm_vect(n));
+	co = s->data;
+	n = sub_vect(s->pos, s->i);
+	a = addition_vect(s->pos, cross_product(co->dir, n));
+	return (norm_vect(sub_vect(s->i, a)));
 }
 
 t_object	*init_cone(t_vector pos, t_vector orientation, t_hsl color)
@@ -81,7 +71,7 @@ t_object	*init_cone(t_vector pos, t_vector orientation, t_hsl color)
 
 	or = (t_cone*)malloc(sizeof(t_cone));
 	or->dir = norm_vect(orientation);
-	or->r = 1.0;
+	or->r = 0.5;
 	p = init_obj(pos, color);
 	p->inter = &cone_inter;
 	p->normal = &cone_normal;
