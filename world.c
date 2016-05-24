@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:01:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/18 15:08:29 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/24 15:16:42 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ void			render(t_world *w)
 	{
 		while (xy[0] < SCREEN_X)
 		{
+			r.pan = pan_to_vect(p[0], p[1]);
 			if ((s = check_objects(r, w, 0)) && !coloring(s, w))
 				img_pxl(w->img, xy[0], xy[1], hsltorgb(s->color));
 			else
 				img_pxl(w->img, xy[0], xy[1], 0);
 			xy[0]++;
 			p[1] -= (45.0 / SCREEN_X);
-			r.pan = pan_to_vect(p[0], p[1]);
 		}
 		xy[0] = 0;
 		xy[1]++;

@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/29 12:50:06 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/12 14:40:14 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/24 16:48:10 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ t_object	*init_obj(t_vector pos, t_hsl color)
 	return (new);
 }
 
-void		add_obj(t_object *begin, t_object *new)
+t_object	*add_obj(t_object *begin, t_object *new)
 {
 	while (begin->next)
 		begin = begin->next;
 	begin->next = new;
+	return (new);
 }

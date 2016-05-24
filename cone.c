@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/19 16:05:52 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/23 13:29:48 by hantlowt         ###   ########.fr       */
+/*   Updated: 2016/05/24 16:25:39 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int			cone_inter(t_ray r, t_object *s)
 		t[0] = (-b + sqrtf(delta)) / (2 * a);
 		t[1] = (-b - sqrtf(delta)) / (2 * a);
 		t[2] = (t[0] < t[1] ? t[0] : t[1]);
-		t[2] = (t[2] < 0 ? t[1] : t[2]);
+		t[2] = (t[2] < 0.0001 ? t[1] : t[2]);
 	}
 	if (t[2] < 0)
 		return (1);
@@ -54,13 +54,26 @@ int			cone_inter(t_ray r, t_object *s)
 
 t_vector	cone_normal(t_object *s)
 {
-	t_vector	n;
 	t_vector	a;
-	t_cone	*co;
+	double		t;
+	t_cone		*co;
+	double		beta;
 
 	co = s->data;
-	n = sub_vect(s->pos, s->i);
-	a = addition_vect(s->pos, cross_product(co->dir, n));
+	a = co->dir;
+	beta = dot_vect(norm_vect(sub_vect(s->i, s->pos)), a);
+	if (acos(beta) * 180.0 / PI > 90.0)
+	{
+		a.x *= -1;
+		a.y *= -1;
+		a.z *= -1;
+		beta = dot_vect(norm_vect(sub_vect(s->i, s->pos)), a);
+	}
+	t = (dist(s->pos, s->i) * sin(beta)) / sin(1.5708 + beta);
+	a.x *= t;
+	a.y *= t;
+	a.z *= t;
+	a = addition_vect(s->pos, a);
 	return (norm_vect(sub_vect(s->i, a)));
 }
 
