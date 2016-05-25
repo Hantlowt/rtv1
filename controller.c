@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:22:17 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/19 14:39:32 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/25 16:14:54 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ int			keyboard(int keycode, void *data)
 	//w->cam->pany = efmod(w->cam->pany + 5.0, 360.0);
 	//w->cam->panx = efmod(w->cam->panx + 5.0, 360.0);
 	render(w);
+	mlx_put_image_to_window(w->mlx, w->win, w->img, 0, 0);
 	return (0);
 }

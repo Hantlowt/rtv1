@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:01:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/24 15:16:42 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/25 17:46:08 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ t_object		*check_objects(t_ray r, t_world *w, t_object *ignore)
 				out = s;
 				touched = 1;
 			}
-			//touched = 1;
 		}
 		s = s->next;
 	}
@@ -60,13 +59,12 @@ void			render(t_world *w)
 	t_ray		r;
 	t_object	*s;
 
-	xy[0] = 0;
 	xy[1] = 0;
 	p[1] = w->cam->pany + (45.0) / 2;
 	p[0] = w->cam->panx + (SCREEN_Y * 45.0 / SCREEN_X) / 2;
 	r.pan = pan_to_vect(p[0], p[1]);
 	r.pos = w->cam->pos;
-	while (xy[1] < SCREEN_Y)
+	while (xy[1] < SCREEN_Y && !(xy[0] = 0))
 	{
 		while (xy[0] < SCREEN_X)
 		{
@@ -78,21 +76,34 @@ void			render(t_world *w)
 			xy[0]++;
 			p[1] -= (45.0 / SCREEN_X);
 		}
-		xy[0] = 0;
 		xy[1]++;
 		p[1] += 45.0;
 		p[0] -= ((SCREEN_Y * 45.0 / SCREEN_X) / SCREEN_Y);
 	}
-	mlx_put_image_to_window(w->mlx, w->win, w->img, 0, 0);
+}
+
+static void		color(t_object *s, t_world *w, t_light *l, t_vector normal)
+{
+	t_vector	light;
+	t_vector	viewer;
+	t_vector	reflec;
+
+	light = norm_vect(sub_vect(l->pos, s->i));
+	viewer = norm_vect(sub_vect(s->i, w->cam->pos));
+	reflec.x = light.x - 2.0 * dot_vect(light, normal) * normal.x;
+	reflec.y = light.y - 2.0 * dot_vect(light, normal) * normal.y;
+	reflec.z = light.z - 2.0 * dot_vect(light, normal) * normal.z;
+	reflec = norm_vect(reflec);
+	if (dot_vect(light, normal) > 0)
+		s->color.l += s->diffuse * dot_vect(light, normal);
+	if (dot_vect(viewer, reflec) > 0)
+		s->color.l += s->specular * powf(dot_vect(viewer, reflec), 20);
 }
 
 int				coloring(t_object *s, t_world *w)
 {
 	t_vector	normal;
-	t_vector	reflec;
-	t_vector	light;
 	t_ray		r;
-	t_vector	viewer;
 	t_light		*l;
 	t_object	*o;
 
@@ -103,19 +114,10 @@ int				coloring(t_object *s, t_world *w)
 	while (l)
 	{
 		r.pan = norm_vect(sub_vect(l->pos, s->i));
-		light = norm_vect(sub_vect(l->pos, s->i));
 		if (!(o = check_objects(r, w, s)) ||
 		dist(s->i, o->i) > dist(s->i, l->pos))
 		{
-			viewer = norm_vect(sub_vect(s->i, w->cam->pos));
-			reflec.x = light.x - 2.0 * dot_vect(light, normal) * normal.x;
-			reflec.y = light.y - 2.0 * dot_vect(light, normal) * normal.y;
-			reflec.z = light.z - 2.0 * dot_vect(light, normal) * normal.z;
-			reflec = norm_vect(reflec);
-			if (dot_vect(light, normal) > 0)
-				s->color.l += s->diffuse * dot_vect(light, normal);
-			if (dot_vect(viewer, reflec) > 0)
-				s->color.l += s->specular * powf(dot_vect(viewer, reflec), 20);
+			color(s, w, l, normal);
 		}
 		l = l->next;
 	}

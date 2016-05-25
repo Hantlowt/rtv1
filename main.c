@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 14:44:17 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/24 16:51:16 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/25 17:26:03 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		main(void)
 	pos = vect(0.0, 0.0, 10.0);
 	dir = vect(0.0, 0.0, -1.0);
 	add_obj(w->objects, init_plane(pos, dir, color));
-	o = add_obj(w->objects, init_cone(vect(0.0, 2.0, 0.0), vect(0, 1.0, 0.0), hsl(60, 50, 100)));
+	o = add_obj(w->objects, init_cone(vect(0.0, 2.0, 0.0), vect(0.0, 1.0, 0), hsl(60, 50, 100)));
 	o->specular = 50.0;
 	o = add_obj(w->objects, init_cylinder(vect(-5.0, 0.0, 0.0), vect(0, 1.0, 1.0), hsl(10, 50, 100)));
 	o->specular = 50.0;
@@ -51,6 +51,7 @@ int		main(void)
 	o->specular = 50.0;
 	mlx_key_hook(w->win, keyboard, w);
 	render(w);
+	mlx_put_image_to_window(w->mlx, w->win, w->img, 0, 0);
 	mlx_loop(w->mlx);
 	return (0);
 }
