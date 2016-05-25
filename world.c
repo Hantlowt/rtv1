@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:01:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/25 17:46:08 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/25 18:38:24 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void			render(t_world *w)
 	xy[1] = 0;
 	p[1] = w->cam->pany + (45.0) / 2;
 	p[0] = w->cam->panx + (SCREEN_Y * 45.0 / SCREEN_X) / 2;
-	r.pan = pan_to_vect(p[0], p[1]);
 	r.pos = w->cam->pos;
 	while (xy[1] < SCREEN_Y && !(xy[0] = 0))
 	{
