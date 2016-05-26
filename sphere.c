@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 15:30:28 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/24 13:53:07 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/26 13:57:55 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,30 @@
 
 int			sphere_inter(t_ray r, t_object *s)
 {
-	double	a;
-	double	b;
-	double	c;
+	double	l[3];
 	double	delta;
 	double	t[3];
 
-	r.pan = norm_vect(r.pan);
-	a = (r.pan.x * r.pan.x) + (r.pan.y * r.pan.y) + (r.pan.z * r.pan.z);
-	b = 2 * (r.pan.x * (r.pos.x - s->pos.x) + r.pan.y * (r.pos.y - s->pos.y)
+	l[0] = (r.pan.x * r.pan.x) + (r.pan.y * r.pan.y) + (r.pan.z * r.pan.z);
+	l[1] = 2 * (r.pan.x * (r.pos.x - s->pos.x) + r.pan.y * (r.pos.y - s->pos.y)
 	+ r.pan.z * (r.pos.z - s->pos.z));
-	c = (((r.pos.x - s->pos.x) * (r.pos.x - s->pos.x)) + ((r.pos.y - s->pos.y)
-	* (r.pos.y - s->pos.y)) + ((r.pos.z - s->pos.z) * (r.pos.z - s->pos.z))) -
-	*(double*)(s->data) * *(double*)(s->data);
-	delta = b * b - 4 * a * c;
-	if (delta < 0)
+	l[2] = (((r.pos.x - s->pos.x) * (r.pos.x - s->pos.x)) +
+	((r.pos.y - s->pos.y) * (r.pos.y - s->pos.y)) + ((r.pos.z - s->pos.z) *
+	(r.pos.z - s->pos.z))) - *(double*)(s->data) * *(double*)(s->data);
+	if ((delta = l[1] * l[1] - 4 * l[0] * l[2]) < 0)
 		return (1);
 	else if (delta == 0)
-		t[2] = (-b + sqrtf(delta)) / (2 * a);
+		t[2] = (-l[1] + sqrtf(delta)) / (2 * l[0]);
 	else
 	{
-		t[0] = (-b + sqrtf(delta)) / (2 * a);
-		t[1] = (-b - sqrtf(delta)) / (2 * a);
+		t[0] = (-l[1] + sqrtf(delta)) / (2 * l[0]);
+		t[1] = (-l[1] - sqrtf(delta)) / (2 * l[0]);
 		t[2] = (t[0] < t[1] ? t[0] : t[1]);
 		t[2] = (t[2] < 0 ? t[1] : t[2]);
 	}
-	if (t[2] < 0)
-		return (1);
 	s->i = vect(r.pos.x + r.pan.x * t[2], r.pos.y + r.pan.y * t[2], 0);
 	s->i.z = r.pos.z + r.pan.z * t[2];
-	return (0);
+	return ((t[2] < 0));
 }
 
 t_vector	sphere_normal(t_object *s)

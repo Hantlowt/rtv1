@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 15:14:06 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/25 15:11:27 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/26 14:15:17 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include "maths.h"
 # include "libft.h"
 # ifdef __APPLE__
-#  define SCREEN_X (1920.0)
-#  define SCREEN_Y (1080.0)
+#  define SCREEN_X (400.0)
+#  define SCREEN_Y (400.0)
 # elif defined __linux__
 #  define SCREEN_X 400.0
 #  define SCREEN_Y 300.0

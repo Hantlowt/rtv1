@@ -6,13 +6,13 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 12:47:43 by hantlowt          #+#    #+#             */
-/*   Updated: 2016/04/27 14:25:10 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/26 14:52:59 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "light.h"
 
-t_light	*init_light(t_vector pos, double intensity)
+t_light		*init_light(t_vector pos, double intensity)
 {
 	t_light	*new;
 

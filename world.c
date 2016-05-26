@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:01:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/25 18:38:24 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/26 13:45:09 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,14 @@ t_object		*check_objects(t_ray r, t_world *w, t_object *ignore)
 	out = 0;
 	while (s)
 	{
+		r.pan = norm_vect(r.pan);
 		if (!s->inter(r, s) && s != ignore)
-		{
 			if (!touched || distance > dist(r.pos, s->i))
 			{
 				distance = dist(r.pos, s->i);
 				out = s;
 				touched = 1;
 			}
-		}
 		s = s->next;
 	}
 	return (out);

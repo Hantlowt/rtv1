@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/21 16:25:42 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/04 13:09:48 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/26 14:23:49 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,3 @@ t_vector			pan_to_vect(double px, double py)
 	n = vect(cosd(py) * cosd(px), sind(px), sind(py) * cosd(px));
 	return (norm_vect(n));
 }
-
-/*t_vector			pan_to_vect(double px, double py)
-{
-	t_vector	n;
-
-	px = efmod(px, 360.0);
-	py = efmod(py, 360.0);
-	n = vect(sind(px) * cosd(py), sind(px), cosd(py) * cosd(px));
-	return (norm_vect(n));
-}*/
-
-/*t_vector			pan_to_vect(double px, double py)
-{
-	t_vector	n;
-
-	px = efmod(px, 360.0);
-	py = efmod(py, 360.0);
-	n = vect(sind(py) * cosd(px), sind(px), cosd(py) * cosd(px));
-	return (norm_vect(n));
-}*/

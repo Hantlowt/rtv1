@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 10:11:13 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/11 14:29:29 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/26 14:51:37 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_vector		cross_product(t_vector a, t_vector b)
 	return (vect(x, y, z));
 }
 
-t_vector		addition_vect(t_vector a, t_vector b)
+t_vector		add_vect(t_vector a, t_vector b)
 {
 	double	x;
 	double	y;
@@ -62,25 +62,4 @@ t_vector		norm_vect(t_vector v)
 double			dot_vect(t_vector a, t_vector b)
 {
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
-}
-
-t_vector		rotate(t_vector v, t_vector a, double r)
-{
-	t_vector	n;
-	double		c;
-	double		s;
-	double		t;
-
-	c = cosd(r);
-	s = sind(r);
-	t = 1.0 - cosd(r);
-	v = norm_vect(v);
-	a = norm_vect(a);
-	n.x = v.x * (t * a.x * a.x + c) + v.y * (t * a.x * a.y - s * a.z)
-	+ v.z * (t * a.x * a.z + s * a.y);
-	n.y = v.x * (t * a.x * a.y + s * a.z) + v.y * (t * a.y * a.y + c)
-	+ v.z * (t * a.y * a.z - s * a.x);
-	n.z = v.x * (t * a.x * a.z - s * a.y) + v.y * (t * a.y * a.z + s * a.x)
-	+ v.z * (t * a.z * a.z + c);
-	return (norm_vect(n));
 }
