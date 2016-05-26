@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 14:44:17 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/26 18:02:29 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/26 20:55:55 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,31 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-static void	parser(char *path, t_world *w)
+static int	parser(char *path, t_world *w)
 {
 	int			fd;
 	char		*str;
 	char		**sp;
 	t_vector	v;
 	t_object	*o;
+	int			i;
 
 	fd = open(path, O_RDONLY);
-	while (get_next_line(fd, &str) == 1)
+	while ((i = get_next_line(fd, &str)))
 	{
-		ft_putendl(str);
+		if (i < 0)
+			return (1);
+		//ft_putendl(str);
 		sp = ft_strsplit(str, '\t');
+		ft_putendl(sp[0]);
 		if (!ft_strcmp(sp[0], "cam"))
 		{
 			w->cam->pos = vect(ft_atoi(sp[1]), ft_atoi(sp[2]), ft_atoi(sp[3]));
 			w->cam->panx = ft_atoi(sp[4]);
 			w->cam->pany = ft_atoi(sp[5]);
-			ft_putstr("Cam added!");
+			ft_putstr("Cam position changed!");
 		}
+		ft_putnbr(ft_strcmp(sp[0], "light"));
 		if (!ft_strcmp(sp[0], "light"))
 		{
 			v = vect(ft_atoi(sp[1]), ft_atoi(sp[2]), ft_atoi(sp[3]));
@@ -92,6 +97,7 @@ static void	parser(char *path, t_world *w)
 		}
 	}
 	close(fd);
+	return (0);
 }
 
 int			main(int argc, char **argv)
@@ -126,9 +132,7 @@ int			main(int argc, char **argv)
 	o->specular = 50.0;*/
 	if (argc > 1)
 	{
-		ft_putstr(argv[0]);
-		parser(argv[1], w);
-		if (w->cam && w->lights)
+		if (!parser(argv[1], w) && w->cam && w->lights)
 		{
 			mlx_key_hook(w->win, keyboard, w);
 			render(w);
@@ -136,7 +140,7 @@ int			main(int argc, char **argv)
 			mlx_loop(w->mlx);
 		}
 		else
-			ft_putstr("Scene without cam or light, are you serious guy ?\n");
+			ft_putstr("Error\n");
 	}
 	else
 		ft_putstr("Please, choose a file in argument !\n");
