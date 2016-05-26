@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 15:14:06 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/26 14:15:17 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/26 15:10:16 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct	s_world
 	t_object	*objects;
 	t_light		*lights;
 }				t_world;
-t_world			*init_world();
+t_world			*init_world(void);
 void			img_pxl(void *img, int x, int y, int color);
 void			render(t_world *w);
 t_object		*check_objects(t_ray r, t_world *w, t_object *ignore);

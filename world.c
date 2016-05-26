@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:01:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/26 13:45:09 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/26 17:14:20 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ t_world			*init_world(void)
 	new->win = mlx_new_window(new->mlx, SCREEN_X, SCREEN_Y, "RTv1");
 	new->img = mlx_new_image(new->mlx, SCREEN_X, SCREEN_Y);
 	new->objects = 0;
-	new->cam = 0;
+	new->lights = 0;
+	new->cam = init_camera(vect(0.0, 0.0, 0.0), 0.0, 0.0);
 	return (new);
 }
 
