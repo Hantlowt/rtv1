@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 16:22:17 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/26 14:52:35 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/27 22:51:56 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int			keyboard(int keycode, void *data)
 {
-	t_world			*w;
+	t_world					*w;
 
 	w = data;
 	if (keycode == ESC)

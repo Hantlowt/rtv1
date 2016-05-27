@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/12 15:36:59 by alhote            #+#    #+#             */
-/*   Updated: 2016/05/26 14:30:44 by alhote           ###   ########.fr       */
+/*   Updated: 2016/05/27 21:37:18 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_object	*init_cylinder(t_vector pos, t_vector orientation, t_hsl color)
 
 	or = (t_cylinder*)malloc(sizeof(t_cylinder));
 	or->dir = norm_vect(orientation);
-	or->r = 1.0;
+	or->r = 3.0;
 	p = init_obj(pos, color);
 	p->inter = &cylinder_inter;
 	p->normal = &cylinder_normal;
